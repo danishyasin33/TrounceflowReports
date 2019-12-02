@@ -56,14 +56,14 @@ doc.append(NoEscape(r'\chapter{Executive Summary}'))
 doc.append(NewPage())
 
 #Chapter 2 
-doc.append(NoEscape(r'\chapter{Central Government Debt: Bonds and Issuers}'))
+doc.append(NoEscape(r'\chapter{Central Government Debt: Bonds, Issuers and Investors}'))
 doc.append(NewPage())
 
 #section 2.1
 with doc.create(Section('By Residency [internal/local/resident; external/foreigner/non-resident]')):
     # doc.append(NoEscape(r"\href{https://www.argentina.gob.ar/hacienda/finanzas/deudapublica/informes-trimestrales-de-la-deuda}{View the data }"))
     # doc.append('from the primary source (argentina.gob.ar)\n')
-    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/argentina/#tab_byresidency-usd}{View the chart }"))
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/ecuador/#tab_byresidency}{View the chart }"))
     doc.append('on trounceﬂow.com and download the data straight from the chart\n')
     doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
 
@@ -83,7 +83,7 @@ with doc.create(Section('External Debt')):
     with doc.create(Subsection('By Issuer [Banks; Government; Monetary Authorities]')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
-        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/argentina/#tab_edsector}{View the chart }"))
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/ecuador/#tab_edsector}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
         doc.append('Recent values are as follows:\n')
 
@@ -99,7 +99,7 @@ with doc.create(Section('International Investment Position')):
     with doc.create(Subsection('Portfolio Liabilities')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
-        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/argentina/#tab_portfoliol-usd}{View the chart }"))
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/ecuador/#tab_portfoliol}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
         doc.append('Recent values are as follows:\n')
         
@@ -116,7 +116,7 @@ with doc.create(Section('International Investment Position')):
     with doc.create(Subsection('Assets & Liabilities')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
-        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/international-investment-position-argentina}{View the chart }"))
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/ecuador/#tab_al}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
         doc.append('Recent values are as follows:\n')
 
