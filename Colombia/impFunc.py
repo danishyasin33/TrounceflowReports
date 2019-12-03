@@ -1,7 +1,7 @@
 def getAuthCode(username, password):
     import requests 
-    import pandas
-    import json
+    #import pandas
+    #import json
 
     data = {
       'username': username,
@@ -22,7 +22,7 @@ def getAuthCode(username, password):
 def get_data_TrounceFlow(headers, url):
     import requests 
     import pandas
-    import json
+    #import json
 
 
     res_data = requests.get(url, headers=headers)

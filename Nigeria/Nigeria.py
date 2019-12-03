@@ -91,7 +91,7 @@ doc.append(NewPage())
 #1.1
 with doc.create(Section('Central Government Debt')):
     with doc.create(Tabular('l|l|r|r')) as table:
-        table.add_row(('Date', 'Type', 'USD bn (Total)','ARS bn (Total)'))
+        table.add_row(('Date', 'Type', 'USD bn (Total)','NGN bn (Total)'))
         table.add_hline()
         #Nov
         table.add_row('Nov 2019','OMO Issuance',dfCenBanOmoIsNovUSD['Total'].values[0],dfCenBanOmoIsNovNGN['Total'].values[0])
@@ -102,7 +102,7 @@ with doc.create(Section('Central Government Debt')):
 #1.2
 with doc.create(Section('Domestic Sector')):
     with doc.create(Tabular('l|l|r|r')) as table:
-        table.add_row(('Date', 'Type', 'USD bn (Total)','ARS bn (Total)'))
+        table.add_row(('Date', 'Type', 'USD bn (Total)','NGN bn (Total)'))
         table.add_hline()
         #Oct
         table.add_row('Oct 2019','Banks',dfBankUSDOct['Total'].values[0],dfBankNGNOct['Total'].values[0])

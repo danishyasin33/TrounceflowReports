@@ -90,21 +90,21 @@ doc.append(NewPage())
 #1.1
 with doc.create(Section('Central Government Debt')):
     with doc.create(Tabular('l|l|r|r')) as table:
-        table.add_row(('Date', 'Type', 'USD bn (Total)','ARS bn (Total)'))
+        table.add_row(('Date', 'Type', 'USD bn (Total)','EGP bn (Total)'))
         table.add_hline()
         #Sep
         table.add_row('Mar 2019','By Residency',dfResUSDMar['Total'].values[0],dfResEGPMar['Total'].values[0])
 #1.2
 with doc.create(Section('Domestic Sector')):
     with doc.create(Tabular('l|l|r|r')) as table:
-        table.add_row(('Date', 'Type', 'USD bn (Total)','ARS bn (Total)'))
+        table.add_row(('Date', 'Type', 'USD bn (Total)','EGP bn (Total)'))
         table.add_hline()
         #Sep
         table.add_row('Aug 2019','Dom. Banks', dfBankUSDAug['Total'].values[0], dfBankEGPAug['Total'].values[0])
 #1.3
 with doc.create(Section('External Sector')):
     with doc.create(Tabular('l|l|r|r')) as table:
-        table.add_row(('Date', 'Type', 'USD bn (Total)','ARS bn (Total)'))
+        table.add_row(('Date', 'Type', 'USD bn (Total)','EGP bn (Total)'))
         table.add_hline()
         #Sep
         table.add_row('Sep 2019','FX Reserves', dfFXUSDSep['Total'].values[0], dfFXEGPSep['Total'].values[0])
@@ -249,7 +249,7 @@ with doc.create(Section('International Investment Position')):
             table.add_row('Date', 'Assets-Direct','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct', 'Liabilities-Portfolio','Liabilities-Other')
             table.add_hline()
             for index, row in dfIIPUSD.iterrows():
-                table.add_row(row['date'],row['assets - direct investment'], row['assets - other investment'], row['assets - portfolio investment'], row['assets - reserve assets'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - other investment'], row['liabilities - portfolio investment'])
+                table.add_row(row['date'],row['assets - direct investment'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
         doc.append(NoEscape(r'}'))
         doc.append('\n\n* International Investment Position\n')
         doc.append(NewPage())
@@ -259,7 +259,7 @@ with doc.create(Section('International Investment Position')):
             table.add_row('Date', 'Assets-Direct','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct', 'Liabilities-Portfolio','Liabilities-Other')
             table.add_hline()
             for index, row in dfIIPEGP.iterrows():
-                table.add_row(row['date'],row['assets - direct investment'], row['assets - other investment'], row['assets - portfolio investment'], row['assets - reserve assets'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - other investment'], row['liabilities - portfolio investment'])
+                table.add_row(row['date'],row['assets - direct investment'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
         doc.append(NoEscape(r'}'))
         doc.append('\n\n* International Investment Position')
 

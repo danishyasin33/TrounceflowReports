@@ -503,7 +503,7 @@ with doc.create(Section('International Investment Position')):
             table.add_row('Date', 'Assets-Direct', 'Assets-Financial Derivatives','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct','Liabilities-Financial Derivatives','Liabilities-Portfolio','Liabilities-Other')
             table.add_hline()
             for index, row in dfIIPUSD.iterrows():
-                table.add_row(row['date'],row['assets - direct investment'], row['assets - financial derivatives (except reserves)'], row['assets - other investment'], row['assets - portfolio investment'], row['assets - reserve assets'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - financial derivatives (except reserves)'], row['liabilities - other investment'], row['liabilities - portfolio investment'])
+                table.add_row(row['date'],row['assets - direct investment'], row['assets - financial derivatives (except reserves)'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - financial derivatives (except reserves)'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
         doc.append(NoEscape(r'}'))
         doc.append('\n\n* International Investment Position\n')
         
@@ -513,7 +513,7 @@ with doc.create(Section('International Investment Position')):
             table.add_row('Date', 'Assets-Direct', 'Assets-Financial Derivatives','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct','Liabilities-Financial Derivatives','Liabilities-Portfolio','Liabilities-Other')
             table.add_hline()
             for index, row in dfIIPARS.iterrows():
-                table.add_row(row['date'],row['assets - direct investment'], row['assets - financial derivatives (except reserves)'], row['assets - other investment'], row['assets - portfolio investment'], row['assets - reserve assets'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - financial derivatives (except reserves)'], row['liabilities - other investment'], row['liabilities - portfolio investment'])
+                table.add_row(row['date'],row['assets - direct investment'], row['assets - financial derivatives (except reserves)'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'], row['liabilities - financial derivatives (except reserves)'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
         doc.append(NoEscape(r'}'))
         doc.append('\n\n* International Investment Position')
 
