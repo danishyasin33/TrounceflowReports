@@ -29,12 +29,36 @@ dfIIPUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/ap
 dfPortCOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-colombia-chart-in-colombian-peso.csv')
 dfPortUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-colombia-chart.csv')
 dfByHoldPerCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/trounceflowbondholdingspercentagechart/composition-of-holdings-in-colombia-chart-in-colombian-peso.csv')
-# dfByHoldStUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-colombia-chart.csv')
-# dfByHoldFlUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-holdings-flow-in-colombia-chart.csv')
-# dfByHoldStCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-colombia-chart-in-colombian-peso.csv')
-# dfByHoldFlCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-holdings-flow-in-colombia-chart-in-colombian-peso.csv')
-
+dfForHolStCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/foreign-holdings-in-colombia-chart-in-colombian-peso.csv')
+dfForHolStUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/foreign-holdings-in-colombia-chart.csv')
+dfForHolFlCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/foreign-holdings-flow-in-colombia-chart-in-colombian-peso.csv')
+dfForHolFlUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/foreign-holdings-flow-in-colombia-chart.csv')
 #_______________________________________
+
+#__________________SUMMARY_________________________
+sepDate = '30/09/2019'
+junDate = '30/06/2019'
+marDate = '31/03/2019'
+augDate = '31/08/2019'
+octDate = '31/10/2019'
+#chapter 2
+dfUSDMar = dfUSD.loc[dfUSD['date'] == marDate] 
+dfCOPMar = dfCOP.loc[dfCOP['date'] == marDate] 
+#2.2
+dfResUSDAug = dfResUSD.loc[dfResUSD['date'] == augDate]
+dfResCOPAug = dfResCOP.loc[dfResCOP['date'] == augDate]
+#Chapter 3
+dfForHolStCOPOct = dfForHolStCOP.loc[dfForHolStCOP['date'] == octDate] 
+dfForHolFlCOPOct = dfForHolFlCOP.loc[dfForHolFlCOP['date'] == octDate] 
+
+dfForHolStUSDOct = dfForHolStUSD.loc[dfForHolStUSD['date'] == octDate] 
+dfForHolFlUSDOct = dfForHolFlUSD.loc[dfForHolFlUSD['date'] == octDate]
+
+#Chapter 4
+dfPortCOPJun = dfPortCOP.loc[dfPortCOP['date'] == junDate]
+dfPortUSDJun = dfPortUSD.loc[dfPortUSD['date'] == junDate]
+
+#__________________________________________________
 
 #geometry_options = {"tmargin": "5cm"}
 doc = Document(documentclass='report', document_options=['11pt, notitlepage'])
@@ -66,6 +90,29 @@ doc.append(NewPage())
 #Summary Chapter 1
 doc.append(NoEscape(r'\chapter{Executive Summary}'))
 doc.append(NewPage())
+with doc.create(Section('Central Government Debt')):
+    #1.1
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date', 'Type', 'USD bn (Total)','COP bn (Total)'))
+        table.add_hline()
+        table.add_row('Aug 2019','By Residency',dfResUSDAug['Total'].values[0],dfResCOPAug['Total'].values[0])
+        table.add_row('Mar 2019','By Currency',dfUSDMar['Total'].values[0],dfCOPMar['Total'].values[0])
+
+with doc.create(Section('Other Public Debt')):
+    #1.1
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date', 'Type', 'USD bn (Total)','COP bn (Total)'))
+        table.add_hline()
+        table.add_row(MultiRow(2,data='Oct 2019'),'Stock',dfForHolStUSDOct['foreign holdings'].values[0],dfForHolStCOPOct['foreign holdings'].values[0])
+        table.add_row('','Flow',dfForHolFlUSDOct['foreign holdings'].values[0],dfForHolFlCOPOct['foreign holdings'].values[0])
+
+with doc.create(Section('External Sector')):
+    #1.1
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date', 'Type', 'USD bn (Total)','COP bn (Total)'))
+        table.add_hline()
+        table.add_row('Jun 2019','Portfolio Liabilities',dfPortUSDJun['Total'].values[0],dfPortCOPJun['Total'].values[0])
+        #table.add_row('Mar 2019','By Currency',dfUSDMar['Total'].values[0],dfCOPMar['Total'].values[0])
 
 #chapter 2
 doc.append(NoEscape(r'\chapter{Central Government Debt: Bonds, Issuers and Investors}'))
@@ -123,11 +170,11 @@ doc.append(NoEscape(r'\begin{landscape}'))
 with doc.create(Section('By Holder (%)')):
     # doc.append(NoEscape(r"\href{https://www.argentina.gob.ar/hacienda/finanzas/deudapublica/informes-trimestrales-de-la-deuda}{View the data }"))
     # doc.append('from the primary source (argentina.gob.ar)\n')
-    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_lctotal}{View the chart }"))
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_lc-percent}{View the chart }"))
     doc.append('on trounceﬂow.com and download the data straight from the chart\n')
     doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
     #First Table
-    doc.append(bold('COP bn\n'))
+    doc.append(bold('\nCOP bn\n\n'))
     doc.append(NoEscape(r'\scalebox{0.6}{'))
     with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
         table.add_row(('Date', 'Average Premium Funds', 'Colombian Central Bank','Commercial Banks', 'Commercial Finance Companies', 'Financial Corporations', 'Floor Broker', 'High Level Financial Cooperatives', 'Insurance and Capitalization Companies'))
@@ -136,7 +183,7 @@ with doc.create(Section('By Holder (%)')):
             table.add_row(row['date'],row['average premium funds'], row['colombian central bank'],row['commercial banks'], row['commercial finance companies'], row['financial corporations'], row['floor broker'], row['high level financial cooperatives'], row['insurance and capitalization companies'])
     doc.append(NoEscape(r'}'))
 
-    doc.append("\n...")
+    doc.append("\n\n...")
     doc.append(NoEscape(r'\scalebox{0.6}{'))
     with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
         table.add_row(('International Investors', 'Legal Persons', 'Market Infrastructure Providers', 'Ministry of Finance', 'Mutual and Pension Fund Managers', 'Mutual Funds', 'Natural Persons', 'Other Funds', 'Pension and Retirement Funds', 'Profitless Companies'))
@@ -145,7 +192,7 @@ with doc.create(Section('By Holder (%)')):
             table.add_row(row['international investors'], row['legal persons'], row['market infrastructure providers'], row['ministry of finance'],row['mutual and pension fund managers'], row['mutual funds'], row['natural persons'], row['other funds'], row['pension and retirement funds'], row['profitless companies'])
     doc.append(NoEscape(r'}'))
 
-    doc.append("\n...")
+    doc.append("\n\n...")
     doc.append(NoEscape(r'\scalebox{0.6}{'))
     with doc.create(Tabular('r|r|r')) as table: #11 columns - 10 remaining 
         table.add_row(('Public Entities', 'Public Financial Institutions', 'Public Trust Funds'))
@@ -153,8 +200,45 @@ with doc.create(Section('By Holder (%)')):
         for index, row in dfByHoldPerCOP.iterrows():
             table.add_row(row['public entities'], row['public financial institutions'], row['public trust funds'])
     doc.append(NoEscape(r'}'))
-
 doc.append(NoEscape(r'\end{landscape}'))
+#doc.append(NewPage())
+with doc.create(Section('Flows')):
+    with doc.create(Subsection('Total Stock')):
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_stock-lcy}{View the chart }"))
+        doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+        doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
+        #doc.append(NewPage())
+        doc.append(bold('Stock (COP bn)\n'))
+        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolStCOP.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+
+        doc.append(bold('\nFlow (COP bn)\n'))
+        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolFlCOP.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+
+        doc.append(bold('\n\nStock (USD bn)\n'))
+        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolStUSD.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+
+        doc.append(bold('\nFlow (USD bn)\n'))
+        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolFlUSD.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+
+
+
+
 
 
 #chapter 4
