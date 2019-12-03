@@ -28,6 +28,11 @@ dfIIPCOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/ap
 dfIIPUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-investment-position-in-colombia-chart.csv')
 dfPortCOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-colombia-chart-in-colombian-peso.csv')
 dfPortUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-colombia-chart.csv')
+dfByHoldPerCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/trounceflowbondholdingspercentagechart/composition-of-holdings-in-colombia-chart-in-colombian-peso.csv')
+# dfByHoldStUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-colombia-chart.csv')
+# dfByHoldFlUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-holdings-flow-in-colombia-chart.csv')
+# dfByHoldStCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-colombia-chart-in-colombian-peso.csv')
+# dfByHoldFlCOP = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-holdings-flow-in-colombia-chart-in-colombian-peso.csv')
 
 #_______________________________________
 
@@ -110,13 +115,140 @@ with doc.create(Section('By Residency [internal/local/resident; external/foreign
         for index, row in dfResCOP.iterrows():
             table.add_row(row['date'],row['domestic creditors'], row['external creditors'],row['Total'])
 
-#chapter 3
+#Chapter 3 
+doc.append(NoEscape(r'\chapter{Other Public Debt}'))
+doc.append(NewPage())
+#3.1
+doc.append(NoEscape(r'\begin{landscape}'))
+with doc.create(Section('By Holder (%)')):
+    # doc.append(NoEscape(r"\href{https://www.argentina.gob.ar/hacienda/finanzas/deudapublica/informes-trimestrales-de-la-deuda}{View the data }"))
+    # doc.append('from the primary source (argentina.gob.ar)\n')
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_lctotal}{View the chart }"))
+    doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+    doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
+    #First Table
+    doc.append(bold('COP bn\n'))
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+        table.add_row(('Date', 'Average Premium Funds', 'Colombian Central Bank','Commercial Banks', 'Commercial Finance Companies', 'Financial Corporations', 'Floor Broker', 'High Level Financial Cooperatives', 'Insurance and Capitalization Companies'))
+        table.add_hline()
+        for index, row in dfByHoldPerCOP.iterrows():
+            table.add_row(row['date'],row['average premium funds'], row['colombian central bank'],row['commercial banks'], row['commercial finance companies'], row['financial corporations'], row['floor broker'], row['high level financial cooperatives'], row['insurance and capitalization companies'])
+    doc.append(NoEscape(r'}'))
+
+    doc.append("\n...")
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+        table.add_row(('International Investors', 'Legal Persons', 'Market Infrastructure Providers', 'Ministry of Finance', 'Mutual and Pension Fund Managers', 'Mutual Funds', 'Natural Persons', 'Other Funds', 'Pension and Retirement Funds', 'Profitless Companies'))
+        table.add_hline()
+        for index, row in dfByHoldPerCOP.iterrows():
+            table.add_row(row['international investors'], row['legal persons'], row['market infrastructure providers'], row['ministry of finance'],row['mutual and pension fund managers'], row['mutual funds'], row['natural persons'], row['other funds'], row['pension and retirement funds'], row['profitless companies'])
+    doc.append(NoEscape(r'}'))
+
+    doc.append("\n...")
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('r|r|r')) as table: #11 columns - 10 remaining 
+        table.add_row(('Public Entities', 'Public Financial Institutions', 'Public Trust Funds'))
+        table.add_hline()
+        for index, row in dfByHoldPerCOP.iterrows():
+            table.add_row(row['public entities'], row['public financial institutions'], row['public trust funds'])
+    doc.append(NoEscape(r'}'))
+
+    
+    # #Flow USD 
+    # doc.append(bold('\nFlow (USD bn)\n'))
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('Date', 'Average Premium Funds', 'Colombian Central Bank','Commercial Banks', 'Commercial Finance Companies', 'Financial Corporations', 'Floor Broker', 'High Level Financial Cooperatives', 'Insurance and Capitalization Companies'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldFlUSD.iterrows():
+    #         table.add_row(row['date'],row['average premium funds'], row['colombian central bank'],row['commercial banks'], row['commercial finance companies'], row['financial corporations'], row['floor broker'], row['high level financial cooperatives'], row['insurance and capitalization companies'])
+    # doc.append(NoEscape(r'}'))
+
+    # doc.append("\n...")
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('International Investors', 'Legal Persons', 'Market Infrastructure Providers', 'Ministry of Finance', 'Mutual and Pension Fund Managers', 'Mutual Funds', 'Natural Persons', 'Other Funds', 'Pension and Retirement Funds', 'Profitless Companies'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldFlUSD.iterrows():
+    #         table.add_row(row['international investors'], row['legal persons'], row['market infrastructure providers'], row['ministry of finance'],row['mutual and pension fund managers'], row['mutual funds'], row['natural persons'], row['other funds'], row['pension and retirement funds'], row['profitless companies'])
+    # doc.append(NoEscape(r'}'))
+
+    # doc.append("\n...")
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('Public Entities', 'Public Financial Institutions', 'Public Trust Funds'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldFlUSD.iterrows():
+    #         table.add_row(row['public entities'], row['public financial institutions'], row['public trust funds'])
+    # doc.append(NoEscape(r'}'))
+
+    # #Second 
+    # doc.append(bold('\n\nStock (COP bn)\n'))
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('Date', 'Average Premium Funds', 'Colombian Central Bank','Commercial Banks', 'Commercial Finance Companies', 'Financial Corporations', 'Floor Broker', 'High Level Financial Cooperatives', 'Insurance and Capitalization Companies'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldStCOP.iterrows():
+    #         table.add_row(row['date'],row['average premium funds'], row['colombian central bank'],row['commercial banks'], row['commercial finance companies'], row['financial corporations'], row['floor broker'], row['high level financial cooperatives'], row['insurance and capitalization companies'])
+    # doc.append(NoEscape(r'}'))
+
+    # doc.append("\n...")
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('International Investors', 'Legal Persons', 'Market Infrastructure Providers', 'Ministry of Finance', 'Mutual and Pension Fund Managers', 'Mutual Funds', 'Natural Persons', 'Other Funds', 'Pension and Retirement Funds', 'Profitless Companies'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldStCOP.iterrows():
+    #         table.add_row(row['international investors'], row['legal persons'], row['market infrastructure providers'], row['ministry of finance'],row['mutual and pension fund managers'], row['mutual funds'], row['natural persons'], row['other funds'], row['pension and retirement funds'], row['profitless companies'])
+    # doc.append(NoEscape(r'}'))
+
+    # doc.append("\n...")
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('Public Entities', 'Public Financial Institutions', 'Public Trust Funds'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldStCOP.iterrows():
+    #         table.add_row(row['public entities'], row['public financial institutions'], row['public trust funds'])
+    # doc.append(NoEscape(r'}'))
+    # #Flow
+    # doc.append(bold('\nFlow (COP bn)\n'))
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('Date', 'Average Premium Funds', 'Colombian Central Bank','Commercial Banks', 'Commercial Finance Companies', 'Financial Corporations', 'Floor Broker', 'High Level Financial Cooperatives', 'Insurance and Capitalization Companies'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldFlCOP.iterrows():
+    #         table.add_row(row['date'],row['average premium funds'], row['colombian central bank'],row['commercial banks'], row['commercial finance companies'], row['financial corporations'], row['floor broker'], row['high level financial cooperatives'], row['insurance and capitalization companies'])
+    # doc.append(NoEscape(r'}'))
+
+    # doc.append("\n...")
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('International Investors', 'Legal Persons', 'Market Infrastructure Providers', 'Ministry of Finance', 'Mutual and Pension Fund Managers', 'Mutual Funds', 'Natural Persons', 'Other Funds', 'Pension and Retirement Funds', 'Profitless Companies'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldFlCOP.iterrows():
+    #         table.add_row(row['international investors'], row['legal persons'], row['market infrastructure providers'], row['ministry of finance'],row['mutual and pension fund managers'], row['mutual funds'], row['natural persons'], row['other funds'], row['pension and retirement funds'], row['profitless companies'])
+    # doc.append(NoEscape(r'}'))
+
+    # doc.append("\n...")
+    # doc.append(NoEscape(r'\scalebox{0.6}{'))
+    # with doc.create(Tabular('r|r|r')) as table: #11 columns - 10 remaining 
+    #     table.add_row(('Public Entities', 'Public Financial Institutions', 'Public Trust Funds'))
+    #     table.add_hline()
+    #     for index, row in dfByHoldFlCOP.iterrows():
+    #         table.add_row(row['public entities'], row['public financial institutions'], row['public trust funds'])
+    # doc.append(NoEscape(r'}'))
+
+
+doc.append(NoEscape(r'\end{landscape}'))
+
+
+#chapter 4
 doc.append(NoEscape(r'\chapter{External Sector}'))
 doc.append(NewPage())
-#section 3.1
+#section 4.1
 doc.append(NoEscape(r'\begin{landscape}'))
 with doc.create(Section('External Debt')):
-    #3.1.1
+    #4.1.1
     with doc.create(Subsection('By Maturity[Short-term; Long-term]')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
@@ -141,7 +273,7 @@ with doc.create(Section('External Debt')):
             for index, row in dfExtDebtByMatCOP.iterrows():
                 table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central government short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
         doc.append(NoEscape(r'}'))
-    #3.1.2
+    #4.1.2
     with doc.create(Subsection('By Sector[Public/Private; Financial/Non-Financial]')):
         doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_edsector}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
@@ -163,7 +295,7 @@ with doc.create(Section('External Debt')):
                 for index, row in dfExtDebtBySecFinCOP.iterrows():
                     table.add_row(row['date'], row['financial sector long-term'], row['financial sector short-term'], row['non-financial sector long-term'], row['non-financial sector short-term'])
     
-    #3.1.3
+    #4.1.3
     with doc.create(Subsection('By Instruments')):
         doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_edinstrument}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
@@ -178,9 +310,10 @@ with doc.create(Section('External Debt')):
                 table.add_row(row['date'], row['bonds long-term'], row['commercial credit long-term'], row['commercial credit short-term'], row['loans long-term'],row['loans short-term'],row['others long-term'],row['others short-term'])
         doc.append(NoEscape(r'}'))
 doc.append(NewPage())
+#4.2
 with doc.create(Section('International Investment Position')):
     
-    #section 4.2.2
+    #section 4.2.1
     with doc.create(Subsection('Assets & Liabilities')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
@@ -211,7 +344,7 @@ with doc.create(Section('International Investment Position')):
 
     #doc.append(NoEscape(r'\end{landscape}'))
 
-    #4.2.1
+    #4.2.2
     with doc.create(Subsection('Portfolio Liabilities')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
