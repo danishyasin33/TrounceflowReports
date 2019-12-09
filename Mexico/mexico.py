@@ -60,11 +60,12 @@ dfBankMXN = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/
 #_______________________________________________
 marDate = '31/03/2019'
 junDate = '30/06/2019'
-julDate = '30/07/2019'
+julDate = '31/07/2019'
 augDate = '31/08/2019'
+augDate2 = '30/08/2019'
 sepDate = '30/09/2019'
-octDate = '1/10/2019'
-
+octDate = '01/10/2019'
+octDate2 = '31/10/2019'
 
 #___________________SUMMARY_____________________
 
@@ -87,15 +88,24 @@ dfForHolFlMXNTail = dfForHolFlMXN.tail(1)
 dfForHolFlUSDTail = dfForHolFlUSD.tail(1) 
 
 Lastdate = dfForHolStMXNTail['date'].values[0]
-#Lastdate = 
+#Lastdate =  
 Lastdate = datetime.datetime.strptime(Lastdate,'%d/%m/%Y')
-time = Lastdate.strftime("%B %Y")
+time = Lastdate.strftime("%b %Y")
 #Equity Flow
-
 dfEquPortFlUSDOct = dfEquPortFlUSD.loc[dfEquPortFlUSD['date'] == octDate]
 dfEquPortFlMXNOct = dfEquPortFlMXN.loc[dfEquPortFlMXN['date'] == octDate]
-
-
+#External Sector
+dfFXUSDOct = dfFXUSD.loc[dfFXUSD['date'] == octDate2]
+dfFXMXNOct = dfFXMXN.loc[dfFXMXN['date'] == octDate2]
+dfExtDebtByMatUSDMar = dfExtDebtByMatUSD.loc[dfExtDebtByMatUSD['date'] == marDate]
+dfExtDebtByMatMXNMar = dfExtDebtByMatMXN.loc[dfExtDebtByMatMXN['date'] == marDate]
+#Domestic Sector
+dfPensionUSDAug = dfPensionUSD.loc[dfPensionUSD['date'] == augDate2]
+dfPensionMXNAug = dfPensionMXN.loc[dfPensionMXN['date'] == augDate2]
+dfInsurUSDAug = dfInsurUSD.loc[dfInsurUSD['date'] == augDate2]
+dfInsurMXNAug = dfInsurMXN.loc[dfInsurMXN['date'] == augDate2]
+dfBankUSDAug = dfBankUSD.loc[dfBankUSD['date'] == augDate]
+dfBankMXNAug = dfBankMXN.loc[dfBankMXN['date'] == augDate]
 #_______________________________________________
 doc = Document(documentclass='report', document_options=['11pt, notitlepage'])
 
@@ -136,7 +146,7 @@ with doc.create(Section('Central Government Debt')):
         #July
         table.add_row('Jul 2019','By Currency [Domestic (MXN); External]',dfUSDJun['Total'].values[0],dfMXNJun['Total'].values[0])
 
-
+#3
 with doc.create(Section('Other Public Debt')):
     #PEMEX Debt section 3.2
     with doc.create(Subsection('PEMEX Debt')):
@@ -144,7 +154,7 @@ with doc.create(Section('Other Public Debt')):
             table.add_row(('Date', 'Type', 'USD bn (Total)','MXN bn (Total)'))
             table.add_hline()
             #June
-            table.add_row(MultiRow(6,data='Jun 2019'), 'Debt by Currency', dfPEMEXByCurUSDJun['Total'].values[0], dfPEMEXByCurMXNJun['Total'].values[0])
+            table.add_row(MultiRow(3,data='Jun 2019'), 'Debt by Currency', dfPEMEXByCurUSDJun['Total'].values[0], dfPEMEXByCurMXNJun['Total'].values[0])
             table.add_row('', 'Debt by Maturity', dfPEMEXByMatUSDJun['Total'].values[0], dfPEMEXByMatMXNJun['Total'].values[0])
             table.add_row('', 'Debt by Interest', dfPEMEXByInterUSDJun['Total'].values[0], dfPEMEXByInterMXNJun['Total'].values[0])
     
@@ -158,6 +168,27 @@ with doc.create(Section('Other Public Debt')):
             table.add_row('','Flow',dfForHolFlUSDTail['foreign holdings'].values[0],dfForHolFlMXNTail['foreign holdings'].values[0])
             table.add_hline()
             table.add_row('Oct 2019','Equity Flow',dfEquPortFlUSDOct['Total'].values[0],dfEquPortFlMXNOct['Total'].values[0])
+#4
+with doc.create(Section('External Sector')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date','Type', 'USD bn (Total)','MXN bn (Total)'))
+        table.add_hline()
+        #sep
+        table.add_row('Oct 2019','IMF FX Reserves', dfFXUSDOct['Total'].values[0], dfFXMXNOct['Total'].values[0])
+        table.add_hline()
+        #June
+        table.add_row('Mar 2019', 'By Maturity', dfExtDebtByMatUSDMar['Total'].values[0], dfExtDebtByMatMXNMar['Total'].values[0])
+       
+#5
+with doc.create(Section('Domestic Sector')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date','Type', 'USD bn (Total)','MXN bn (Total)'))
+        table.add_hline()
+        #June
+        table.add_row(MultiRow(3,data='Aug 2019'), 'Insur. Companies', dfInsurUSDAug['Total'].values[0], dfInsurMXNAug['Total'].values[0])
+        table.add_row('', 'Banks', dfBankUSDAug['Total'].values[0], dfBankMXNAug['Total'].values[0])
+        table.add_row('', 'Pension Funds', dfPensionUSDAug['Total'].values[0], dfPensionMXNAug['Total'].values[0])
+    
 
 #Chapter 2 
 doc.append(NoEscape(r'\chapter{Central Government Debt: Bonds, Issuers and Investors}'))
@@ -514,7 +545,7 @@ with doc.create(Section('International Investment Position')):
                 table.add_row(row['date'], row['debt securities'], row['equity and investment fund shares'], row['Total'])
         doc.append(NoEscape(r'}'))
 
-        doc.append(bold('\n\nCOP bn\n'))
+        doc.append(bold('\n\nMXN bn\n'))
         doc.append(NoEscape(r'\scalebox{0.9}{'))
         with doc.create(Tabular('l|r|r|r')) as table:
             table.add_row('Date', 'Debt Securities', 'Equity and Investment Fund Shares','Total')
