@@ -45,10 +45,18 @@ augDate = '31/08/2019'
 #2
 dfResUSDMar = dfLegUSD.loc[dfLegUSD['date'] == marDate] 
 #3
-dfByIssuerUSDMar = dfGrossByIssuerUSD.loc[dfGrossByIssuerUSD['date'] == marDate]
-#dfByInstrUSDMar = dfByInstrUSD.loc[dfByInstrUSD['date'] == marDate]
-dfByCurUSDMar = dfGrossByCurUSD.loc[dfGrossByCurUSD['date'] == marDate]
-dfByHoldResUSDMar = dfGrossByHoldResUSD.loc[dfGrossByHoldResUSD['date'] == marDate] 
+#3.1
+dfGrByIssuerUSDMar = dfGrossByIssuerUSD.loc[dfGrossByIssuerUSD['date'] == marDate]
+dfGrByInstrUSDMar = dfGrossByInstrUSD.loc[dfGrossByInstrUSD['date'] == marDate]
+dfGrByCurUSDMar = dfGrossByCurUSD.loc[dfGrossByCurUSD['date'] == marDate]
+dfGrByHoldResUSDMar = dfGrossByHoldResUSD.loc[dfGrossByHoldResUSD['date'] == marDate] 
+dfGrByIntrUSDMar = dfGrossByIntRate.loc[dfGrossByIntRate['date'] == marDate]
+#dfGrByHoldResUSDMar = dfGrossByHoldResUSD.loc[dfGrossByHoldResUSD['date'] == marDate]
+#3.2
+dfCoByIssuerUSDMar = dfConByIssuerUSD.loc[dfConByIssuerUSD['date'] == marDate]
+dfCoByInstrUSDMar = dfConByInstrUSD.loc[dfConByInstrUSD['date'] == marDate]
+dfCoByCurUSDMar = dfConByCurUSD.loc[dfConByCurUSD['date'] == marDate]
+dfCoByHoldResUSDMar = dfConByHoldResUSD.loc[dfConByHoldResUSD['date'] == marDate] 
 #4
 dfFXUSDSep = dfFXUSD.loc[dfFXUSD['date'] == sepDate] 
 dfExtSecUSDMar = dfExtSecUSD.loc[dfExtSecUSD['date'] == marDate] 
@@ -92,16 +100,28 @@ with doc.create(Section('Central Government Debt')):
         table.add_row(('Date', 'Type', 'USD bn (Total)'))
         table.add_hline()
         #Sep
-        table.add_row('Mar 2019','By Residency',dfResUSDMar['Total'].values[0])
+        table.add_row('Mar 2019','By Legal Jurisdiction',dfResUSDMar['Total'].values[0])
 #1.2
 with doc.create(Section('Other Public Debt')):
-    #1.1
-    with doc.create(Tabular('l|l|r')) as table:
-        table.add_row(('Date', 'Type', 'USD bn (Total)'))
-        table.add_hline()
-        table.add_row(MultiRow(3,data='Mar 2019'),'By Issuer',dfByIssuerUSDMar['Total'].values[0])
-        table.add_row('','By Currency',dfByCurUSDMar['Total'].values[0])
-        table.add_row('','By Residency',dfByHoldResUSDMar['Total'].values[0])
+    #1.2.1
+    with doc.create(Subsection('Gross Debt')):
+        with doc.create(Tabular('l|l|r')) as table:
+            table.add_row(('Date', 'Type', 'USD bn (Total)'))
+            table.add_hline()
+            table.add_row(MultiRow(5,data='Mar 2019'),'By Issuer',dfGrByIssuerUSDMar['Total'].values[0])
+            table.add_row('','By Instrument',dfGrByInstrUSDMar['Total'].values[0])
+            table.add_row('','By Currency',dfGrByCurUSDMar['Total'].values[0])
+            table.add_row('','By Residency',dfGrByHoldResUSDMar['Total'].values[0])
+            table.add_row('','By Interest',dfGrByIntrUSDMar['Total'].values[0])
+    #1.2.2
+    with doc.create(Subsection('Consolidated Debt')):
+        with doc.create(Tabular('l|l|r')) as table:
+            table.add_row(('Date', 'Type', 'USD bn (Total)'))
+            table.add_hline()
+            table.add_row(MultiRow(4,data='Mar 2019'),'By Issuer',dfCoByIssuerUSDMar['Total'].values[0])
+            table.add_row('','By Instrument',dfCoByInstrUSDMar['Total'].values[0])
+            table.add_row('','By Currency',dfCoByCurUSDMar['Total'].values[0])
+            table.add_row('','By Residency',dfCoByHoldResUSDMar['Total'].values[0])
 #1.3
 with doc.create(Section('External Sector')):
     with doc.create(Tabular('l|l|r')) as table:
