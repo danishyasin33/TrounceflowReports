@@ -146,7 +146,7 @@ with doc.create(Section('By Residency [internal/local/resident; external/foreign
     # doc.append('from the primary source (argentina.gob.ar)\n')
     doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_byresidency}{View the chart }"))
     doc.append('on trounceﬂow.com and download the data straight from the chart\n')
-    doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
+    #doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
 
     doc.append(bold('USD bn\n'))
     with doc.create(Tabular('l|r|r|r')) as table:
@@ -172,9 +172,9 @@ with doc.create(Section('By Holder (%)')):
     # doc.append('from the primary source (argentina.gob.ar)\n')
     doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_lc-percent}{View the chart }"))
     doc.append('on trounceﬂow.com and download the data straight from the chart\n')
-    doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
+    #doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
     #First Table
-    doc.append(bold('\nCOP bn\n\n'))
+    doc.append(bold('\nPercent (%)\n\n'))
     doc.append(NoEscape(r'\scalebox{0.6}{'))
     with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
         table.add_row(('Date', 'Average Premium Funds', 'Colombian Central Bank','Commercial Banks', 'Commercial Finance Companies', 'Financial Corporations', 'Floor Broker', 'High Level Financial Cooperatives', 'Insurance and Capitalization Companies'))
@@ -185,7 +185,7 @@ with doc.create(Section('By Holder (%)')):
 
     doc.append("\n\n...")
     doc.append(NoEscape(r'\scalebox{0.6}{'))
-    with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: #11 columns - 10 remaining 
+    with doc.create(Tabular('r|r|r|r|r|r|r|r|r|r')) as table: 
         table.add_row(('International Investors', 'Legal Persons', 'Market Infrastructure Providers', 'Ministry of Finance', 'Mutual and Pension Fund Managers', 'Mutual Funds', 'Natural Persons', 'Other Funds', 'Pension and Retirement Funds', 'Profitless Companies'))
         table.add_hline()
         for index, row in dfByHoldPerCOP.iterrows():
@@ -194,7 +194,7 @@ with doc.create(Section('By Holder (%)')):
 
     doc.append("\n\n...")
     doc.append(NoEscape(r'\scalebox{0.6}{'))
-    with doc.create(Tabular('r|r|r')) as table: #11 columns - 10 remaining 
+    with doc.create(Tabular('r|r|r')) as table: 
         table.add_row(('Public Entities', 'Public Financial Institutions', 'Public Trust Funds'))
         table.add_hline()
         for index, row in dfByHoldPerCOP.iterrows():
@@ -206,31 +206,31 @@ with doc.create(Section('Flows')):
     with doc.create(Subsection('Total Stock')):
         doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/colombia/#tab_stock-lcy}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
-        doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
+        #doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
         #doc.append(NewPage())
         doc.append(bold('Stock (COP bn)\n'))
-        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+        with doc.create(Tabular('l|r')) as table: 
             table.add_row(('Date', 'Foreign Holdings'))
             table.add_hline()
             for index, row in dfForHolStCOP.iterrows():
                 table.add_row(row['date'], row['foreign holdings'])
 
         doc.append(bold('\nFlow (COP bn)\n'))
-        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+        with doc.create(Tabular('l|r')) as table: 
             table.add_row(('Date', 'Foreign Holdings'))
             table.add_hline()
             for index, row in dfForHolFlCOP.iterrows():
                 table.add_row(row['date'], row['foreign holdings'])
 
         doc.append(bold('\n\nStock (USD bn)\n'))
-        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+        with doc.create(Tabular('l|r')) as table: 
             table.add_row(('Date', 'Foreign Holdings'))
             table.add_hline()
             for index, row in dfForHolStUSD.iterrows():
                 table.add_row(row['date'], row['foreign holdings'])
 
         doc.append(bold('\nFlow (USD bn)\n'))
-        with doc.create(Tabular('r|r')) as table: #11 columns - 10 remaining 
+        with doc.create(Tabular('l|r')) as table: 
             table.add_row(('Date', 'Foreign Holdings'))
             table.add_hline()
             for index, row in dfForHolFlUSD.iterrows():

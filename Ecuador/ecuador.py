@@ -265,7 +265,7 @@ with doc.create(Section('Gross Debt')):
         doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/ecuador/#tab_debtgdp}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
 
-        doc.append(bold('USD bn\n'))
+        doc.append(bold('Percent (%)\n'))
         doc.append(NoEscape(r'\scalebox{0.8}{'))
         with doc.create(Tabular('l|r|r|r')) as table:
             table.add_row(('Date', 'External Debt to GDP', 'Internal Debt to GDP','Total Debt to GDP'))
@@ -366,7 +366,7 @@ with doc.create(Section('Consolidated Debt')):
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
         
         #doc.append(NewPage())
-        doc.append(bold('USD bn\n'))
+        doc.append(bold('Percent (%)\n'))
         with doc.create(Tabular('l|r|r|r')) as table:
             table.add_row(('Date', 'External Debt to GDP', 'Internal Debt to GDP','Total Debt to GDP'))
             table.add_hline()
