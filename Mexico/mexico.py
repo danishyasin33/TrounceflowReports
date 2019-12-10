@@ -57,6 +57,8 @@ dfInsurUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com
 dfInsurMXN = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-government-securities-of-insurance-and-surety-companies-by-security-type-in-mexico-chart-in-mexican-peso.csv')
 dfBankUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-government-securities-of-banks-by-security-type-in-mexico-chart.csv')
 dfBankMXN = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-government-securities-of-banks-by-security-type-in-mexico-chart-in-mexican-peso.csv')
+dfInvUSD = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-government-securities-of-investment-funds-by-security-type-in-mexico-chart.csv')
+dfInvMXN = impFunc.get_data_TrounceFlow(authCode, 'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-government-securities-of-investment-funds-by-security-type-in-mexico-chart-in-mexican-peso.csv')
 #_______________________________________________
 marDate = '31/03/2019'
 junDate = '30/06/2019'
@@ -106,6 +108,9 @@ dfInsurUSDAug = dfInsurUSD.loc[dfInsurUSD['date'] == augDate2]
 dfInsurMXNAug = dfInsurMXN.loc[dfInsurMXN['date'] == augDate2]
 dfBankUSDAug = dfBankUSD.loc[dfBankUSD['date'] == augDate]
 dfBankMXNAug = dfBankMXN.loc[dfBankMXN['date'] == augDate]
+dfInvUSDAug = dfInvUSD.loc[dfInvUSD['date'] == augDate]
+dfInvMXNAug = dfInvMXN.loc[dfInvMXN['date'] == augDate]
+
 #_______________________________________________
 doc = Document(documentclass='report', document_options=['11pt, notitlepage'])
 
@@ -185,10 +190,10 @@ with doc.create(Section('Domestic Sector')):
         table.add_row(('Date','Type', 'USD bn (Total)','MXN bn (Total)'))
         table.add_hline()
         #June
-        table.add_row(MultiRow(3,data='Aug 2019'), 'Insur. Companies', dfInsurUSDAug['Total'].values[0], dfInsurMXNAug['Total'].values[0])
+        table.add_row(MultiRow(4,data='Aug 2019'), 'Insur. Companies', dfInsurUSDAug['Total'].values[0], dfInsurMXNAug['Total'].values[0])
         table.add_row('', 'Banks', dfBankUSDAug['Total'].values[0], dfBankMXNAug['Total'].values[0])
         table.add_row('', 'Pension Funds', dfPensionUSDAug['Total'].values[0], dfPensionMXNAug['Total'].values[0])
-    
+        table.add_row('', 'Investment Funds', dfInvUSDAug['Total'].values[0], dfInvMXNAug['Total'].values[0])
 
 #Chapter 2 
 doc.append(NoEscape(r'\chapter{Central Government Debt: Bonds, Issuers and Investors}'))
@@ -314,7 +319,7 @@ with doc.create(Section('PEMEX Debt')):
     with doc.create(Subsection('By Interest Rate[Fixed-Rate; Floating-Rate]')):
         # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
         # doc.append('from the primary source (argentina.gob.ar)\n')
-        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/mexico/#tab_pemex-maturity}{View the chart }"))
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/mexico/#tab_pemex-rate}{View the chart }"))
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
         doc.append('Recent values are as follows:\n')
 
@@ -620,6 +625,26 @@ with doc.create(Section('Banks')):
         table.add_row('Date', 'Bonos', 'Bondes LD','Cetes','Udibonos','Bondes')
         table.add_hline()
         for index, row in dfBankMXN.iterrows():
+            table.add_row(row['date'], row['bonos'], row['bondes ld'], row['cetes'],row['udibonos'], row['bondes'])
+
+#Section 5.4   
+with doc.create(Section('Investment Funds')):
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/mexico/#tab_investmentfunds}{View the chart }"))
+    doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+    doc.append('Recent values are as follows:\n')
+    doc.append(NewPage())
+    doc.append(bold('USD bn\n'))
+    with doc.create(Tabular('l|r|r|r|r|r')) as table:
+        table.add_row('Date', 'Bonos', 'Bondes LD','Cetes','Udibonos','Bondes')
+        table.add_hline()
+        for index, row in dfInvUSD.iterrows():
+            table.add_row(row['date'], row['bonos'], row['bondes ld'], row['cetes'],row['udibonos'], row['bondes'])
+
+    doc.append(bold('\n\nMXN bn\n'))
+    with doc.create(Tabular('l|r|r|r|r|r')) as table:
+        table.add_row('Date', 'Bonos', 'Bondes LD','Cetes','Udibonos','Bondes')
+        table.add_hline()
+        for index, row in dfInvMXN.iterrows():
             table.add_row(row['date'], row['bonos'], row['bondes ld'], row['cetes'],row['udibonos'], row['bondes'])
 
 
