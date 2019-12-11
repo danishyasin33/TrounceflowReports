@@ -44,6 +44,9 @@ dflocByLTNRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.co
 
 dflocByNTNUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ntn-b-holders-in-brazil-chart.csv')
 dflocByNTNRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ntn-b-holders-in-brazil-chart-in-brazilian-real.csv')
+#Total Stock
+dfTotalStUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-stock-in-brazil-chart.csv')
+dfTotalStBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-stock-in-brazil-chart-in-brazilian-real.csv')
 
 #Flows
     #total stock
@@ -369,6 +372,47 @@ with doc.create(Section('Held by Public')):
                 for index, row in dflocByNTNRD.iterrows():
                     table.add_row(row['date'],row['financial institutions'],row['funds'], row['government'],row['insurance'],row['non-residents'],row['pension'],row['others'])
 
+doc.append(NoEscape(r'\begin{landscape}'))
+with doc.create(Section('Total Stock')):
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/brazil/#tab_fpd-stock}{View the chart }"))
+    doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+    doc.append('Recent values are as follows:\n')
+
+    doc.append(bold('USD bn\n'))
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r|r|r|r')) as table:
+        table.add_row(('Date', 'DFPD in Central Bank', 'DPFD-LFT','DPFD-LTN','DFPD-NBC-E','DPFD-NBC-B','DPFD-NBC-C','DPFD-NBC-D','DPFD-NBC-F','DPFD-Other','DPFD-Securitized Debt','DPFD-TDA','EPFD-Bradies','EPFD-Euro'))
+        table.add_hline()
+        for index, row in dfTotalStUSD.iterrows():
+            table.add_row(row['date'],row['dfpd in central bank portfolio'],row['dpfd - lft'], row['dpfd - ltn'],row['dpfd - nbc-e'],row['dpfd - ntn-b'],row['dpfd - ntn-c'],row['dpfd - ntn-d'],row['dpfd - ntn-f'],row['dpfd - other'],row['dpfd - securitized debt'],row['dpfd - tda'],row['epfd - bradies'],row['epfd - euro'])
+    doc.append(NoEscape(r'}'))
+    doc.append('\n...')
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('r|r|r|r|r')) as table:
+        table.add_row(('EPFD-Global BRL','EPFD-Global USD','EPFD-Multilateral Orgnisms','EPFD-Other','EPFD-Private Banks/Gov. Agencies'))
+        table.add_hline()
+        for index, row in dfTotalStUSD.iterrows():
+            table.add_row(row['epfd - global brl'],row['epfd - global us$'],row['epfd - multilateral organisms'],row['epfd - other'],row['epfd - private banks/gov. agencies'])
+    doc.append(NoEscape(r'}'))
+
+    doc.append(bold('\n\nBRL bn\n'))
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r|r|r|r')) as table:
+        table.add_row(('Date', 'DFPD in Central Bank', 'DPFD-LFT','DPFD-LTN','DFPD-NBC-E','DPFD-NBC-B','DPFD-NBC-C','DPFD-NBC-D','DPFD-NBC-F','DPFD-Other','DPFD-Securitized Debt','DPFD-TDA','EPFD-Bradies','EPFD-Euro'))
+        table.add_hline()
+        for index, row in dfTotalStBRL.iterrows():
+            table.add_row(row['date'],row['dfpd in central bank portfolio'],row['dpfd - lft'], row['dpfd - ltn'],row['dpfd - nbc-e'],row['dpfd - ntn-b'],row['dpfd - ntn-c'],row['dpfd - ntn-d'],row['dpfd - ntn-f'],row['dpfd - other'],row['dpfd - securitized debt'],row['dpfd - tda'],row['epfd - bradies'],row['epfd - euro'])
+    doc.append(NoEscape(r'}'))
+    doc.append('\n...')
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('r|r|r|r|r')) as table:
+        table.add_row(('EPFD-Global BRL','EPFD-Global USD','EPFD-Multilateral Orgnisms','EPFD-Other','EPFD-Private Banks/Gov. Agencies'))
+        table.add_hline()
+        for index, row in dfTotalStBRL.iterrows():
+            table.add_row(row['epfd - global brl'],row['epfd - global us$'],row['epfd - multilateral organisms'],row['epfd - other'],row['epfd - private banks/gov. agencies'])
+    doc.append(NoEscape(r'}'))
+
+doc.append(NoEscape(r'\end{landscape}'))
 #3.3
 with doc.create(Section('Flows')):
     #3.3.1
@@ -384,7 +428,7 @@ with doc.create(Section('Flows')):
             table.add_hline()
             for index, row in dfForHolStBRL.iterrows():
                 table.add_row(row['date'], row['foreign holdings'])
-        doc.append(NewPage())
+        #doc.append(NewPage())
         doc.append(bold('\nFlow (BRL bn)\n'))
         with doc.create(Tabular('l|r')) as table: 
             table.add_row(('Date', 'Foreign Holdings'))
@@ -427,7 +471,7 @@ with doc.create(Section('Flows')):
             for index, row in dfByInstruFlBRL.iterrows():
                 table.add_row(row['date'],row['ntn-f'], row['ntn-b'],row['lft'],row['ltn'],row['others'])
         
-        doc.append(NewPage())
+        #doc.append(NewPage())
         doc.append(bold('\n\nStock (USD bn)\n'))
         with doc.create(Tabular('l|r|r|r|r|r')) as table:
             table.add_row(('Date', 'NTN-F', 'NTN-B','LFT','LTN','Other'))
