@@ -672,7 +672,7 @@ with doc.create(Section('External Debt')):
             table.add_row('Date', 'Banks (Short)', 'Banks (Long)','Monetary Auth. (Short)','Monetary Auth. (Long)','Central Gov. (Short)','Central Gov. (Long)','Others (Short)','Others (Long)','Unclassified')
             table.add_hline()
             for index, row in dfExtDebtByMatUSD.iterrows():
-                table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central governnt short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
+                table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central government short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
         doc.append(NoEscape(r'}'))
 
         doc.append(bold('\n\nBRL bn\n'))
