@@ -15,35 +15,35 @@ authCode = impFunc.getAuthCode('DanishYasin','Alpha103')
 
 #central government
 dfResUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-by-residency-of-holders-in-brazil-chart.csv')
-dfResRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-by-residency-of-holders-in-brazil-chart-in-brazilian-real.csv')
+dfResBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-by-residency-of-holders-in-brazil-chart-in-brazilian-real.csv')
 dfByMatUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-by-maturity-in-brazil-chart.csv')
-dfByMatRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-by-maturity-in-brazil-chart-in-brazilian-real.csv')
+dfByMatBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-by-maturity-in-brazil-chart-in-brazilian-real.csv')
 dfByStockUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-in-brazil-chart.csv')
-dfByStockRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-in-brazil-chart-in-brazilian-real.csv')
+dfByStockBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-in-brazil-chart-in-brazilian-real.csv')
 
 #other public Debt
 dfCenBankPorUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-in-central-bank-portfolio-in-brazil-chart.csv')
-dfCenBankPorRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-in-central-bank-portfolio-in-brazil-chart-in-brazilian-real.csv')
+dfCenBankPorBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-in-central-bank-portfolio-in-brazil-chart-in-brazilian-real.csv')
     #held by public
 dfUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-by-currency-in-brazil-chart.csv')
-dfRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-by-currency-in-brazil-chart-in-brazilian-real.csv')
+dfBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-by-currency-in-brazil-chart-in-brazilian-real.csv')
 dfPubMatUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-by-maturity-in-brazil-chart.csv')
-dfPubMatRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-by-maturity-in-brazil-chart-in-brazilian-real.csv')
+dfPubMatBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-by-maturity-in-brazil-chart-in-brazilian-real.csv')
     #local currency
 dflocByInsUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-outstanding-local-currency-sovereign-bonds-by-type-of-instrument-in-brazil-chart.csv')
-dflocByInsRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-outstanding-local-currency-sovereign-bonds-by-type-of-instrument-in-brazil-chart-in-brazilian-real.csv')
+dflocByInsBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-outstanding-local-currency-sovereign-bonds-by-type-of-instrument-in-brazil-chart-in-brazilian-real.csv')
 
 dflocBySecUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-brazil-chart.csv')
-dflocBySecRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-brazil-chart-in-brazilian-real.csv')
+dflocBySecBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-holdings-in-brazil-chart-in-brazilian-real.csv')
 
 dflocByLFTUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/lft-holders-in-brazil-chart.csv')
-dflocByLFTRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/lft-holders-in-brazil-chart-in-brazilian-real.csv')
+dflocByLFTBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/lft-holders-in-brazil-chart-in-brazilian-real.csv')
 
 dflocByLTNUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ltn-holders-in-brazil-chart.csv')
-dflocByLTNRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ltn-holders-in-brazil-chart-in-brazilian-real.csv')
+dflocByLTNBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ltn-holders-in-brazil-chart-in-brazilian-real.csv')
 
 dflocByNTNUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ntn-b-holders-in-brazil-chart.csv')
-dflocByNTNRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ntn-b-holders-in-brazil-chart-in-brazilian-real.csv')
+dflocByNTNBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/ntn-b-holders-in-brazil-chart-in-brazilian-real.csv')
 #Total Stock
 dfTotalStUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-stock-in-brazil-chart.csv')
 dfTotalStBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/public-debt-stock-in-brazil-chart-in-brazilian-real.csv')
@@ -63,31 +63,32 @@ dfEquPortFlBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.
 
 #External Sector
 dfFXUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/imf-fx-reserves-in-brazil-chart.csv')
-dfFXRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/imf-fx-reserves-in-brazil-chart-in-brazilian-real.csv')
+dfFXBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/imf-fx-reserves-in-brazil-chart-in-brazilian-real.csv')
 dfExtDebtByMatUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/external-debt-by-maturity-in-brazil-chart.csv')
-dfExtDebtByMatRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/external-debt-by-maturity-in-brazil-chart-in-brazilian-real.csv')
+dfExtDebtByMatBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/external-debt-by-maturity-in-brazil-chart-in-brazilian-real.csv')
 dfExtCurUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/external-debt-by-currency-in-brazil-chart.csv')
-dfExtCurRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/external-debt-by-currency-in-brazil-chart-in-brazilian-real.csv')
+dfExtCurBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/external-debt-by-currency-in-brazil-chart-in-brazilian-real.csv')
 dfIIPUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-investment-position-in-brazil-chart.csv')
-dfIIPRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-investment-position-in-brazil-chart-in-brazilian-real.csv')
+dfIIPBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-investment-position-in-brazil-chart-in-brazilian-real.csv')
 dfPortUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-brazil-chart.csv')
-dfPortRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-brazil-chart-in-brazilian-real.csv')
+dfPortBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-brazil-chart-in-brazilian-real.csv')
 
 #Domestic Sector
 dfPensionUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-em-pension-funds-in-brazil-chart.csv')
-dfPensionRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-em-pension-funds-in-brazil-chart-in-brazilian-real.csv')
+dfPensionBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-em-pension-funds-in-brazil-chart-in-brazilian-real.csv')
 
 dfBankUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-banks-in-brazil-chart.csv')
-dfBankRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-banks-in-brazil-chart-in-brazilian-real.csv')
+dfBankBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/holdings-of-banks-in-brazil-chart-in-brazilian-real.csv')
 
 dfInvFuFlUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/fund-flows-to-local-investment-funds-in-brazil-chart.csv')
-dfInvFuFlRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/fund-flows-to-local-investment-funds-in-brazil-chart-in-brazilian-real.csv')
+dfInvFuFlBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/fund-flows-to-local-investment-funds-in-brazil-chart-in-brazilian-real.csv')
 
 dfInvAUMUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/aum-of-local-investment-funds-in-brazil-chart.csv')
-dfInvAUMRD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/aum-of-local-investment-funds-in-brazil-chart-in-brazilian-real.csv')
+dfInvAUMBRL = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/aum-of-local-investment-funds-in-brazil-chart-in-brazilian-real.csv')
 
 #_______________________________________________
 marDate = '31/03/2019'
+mayDate = '31/05/2019'
 junDate = '30/06/2019'
 julDate = '31/07/2019'
 augDate = '31/08/2019'
@@ -97,7 +98,12 @@ octDate = '01/10/2019'
 octDate2 = '31/10/2019'
 
 #___________________SUMMARY_____________________
+#central government
+dfResUSDMay = dfResUSD.loc[dfResUSD['date'] == mayDate]
+dfResBRLMay = dfResBRL.loc[dfResBRL['date'] == mayDate]
 
+dfByMatUSDMay = dfByMatUSD.loc[dfByMatUSD['date'] == mayDate]
+dfByMatBRLMay = dfByMatBRL.loc[dfByMatBRL['date'] == mayDate]
 
 
 
@@ -157,7 +163,7 @@ with doc.create(Section('By Residency [internal/local/resident; external/foreign
     with doc.create(Tabular('l|r|r|r')) as table:
         table.add_row(('Date', 'Domestic', 'External','Total'))
         table.add_hline()
-        for index, row in dfResRD.iterrows():
+        for index, row in dfResBRL.iterrows():
             table.add_row(row['date'],row['domestic creditors'], row['external creditors'],row['Total'])
 #2.2
 with doc.create(Section('By Maturity[Short-term; Long-term]')):
@@ -178,7 +184,7 @@ with doc.create(Section('By Maturity[Short-term; Long-term]')):
         with doc.create(Tabular('l|r|r')) as table:
             table.add_row('Date', 'Short-Term', 'Long-Term')
             table.add_hline()
-            for index, row in dfByMatRD.iterrows():
+            for index, row in dfByMatBRL.iterrows():
                 table.add_row(row['date'], row['short term'], row['medium or long term'])
 
 
@@ -203,7 +209,7 @@ with doc.create(Section('By Total Stock')):
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table:
             table.add_row('Date', 'Non-Res. Long-Term Contrac.', 'Non-Res. Long-Term Sec.','Non-Res. Short-Term Contrac.','Non-Res. Short-Term Sec.','Res. Long-Term Contrac.','Res. Long-Term Sec.','Res. Short-Term Contrac.','Res. Short-Term Sec.')
             table.add_hline()
-            for index, row in dfByStockRD.iterrows():
+            for index, row in dfByStockBRL.iterrows():
                 table.add_row(row['date'], row['non-residents - medium or long term contractual'], row['non-residents - medium or long term securities'], row['non-residents - short term contractual'], row['non-residents - short term securities'], row['residents - medium or long term contractual'], row['residents - medium or long term securities'], row['residents - short term contractual'], row['residents - short term securities'])
         doc.append(NoEscape(r'}'))
 doc.append(NoEscape(r'\end{landscape}'))
@@ -228,7 +234,7 @@ with doc.create(Section('In Central Bank')):
     with doc.create(Tabular('l|r|r|r|r|r')) as table:
         table.add_row(('Date', 'NTN-F', 'NTN-B','LFT','LTN','Other'))
         table.add_hline()
-        for index, row in dfCenBankPorRD.iterrows():
+        for index, row in dfCenBankPorBRL.iterrows():
             table.add_row(row['date'],row['ntn-f'], row['ntn-b'],row['lft'],row['ltn'],row['other'])
 #3.2
 with doc.create(Section('Held by Public')):
@@ -251,7 +257,7 @@ with doc.create(Section('Held by Public')):
     with doc.create(Tabular('c|c|c|c')) as table:
         table.add_row(('Date', 'Domestic', 'External','Total'))
         table.add_hline()
-        for index, row in dfRD.iterrows():
+        for index, row in dfBRL.iterrows():
             table.add_row(row['date'],row['domestic currency'], row['foreign currency'],row['Total'])
     #3.2.2
     with doc.create(Subsection('By Maturity')):
@@ -271,7 +277,7 @@ with doc.create(Section('Held by Public')):
             with doc.create(Tabular('l|r|r|r|r|r|r')) as table:
                 table.add_row(('Date', 'Up to 1 Year', '1-2 Years','2-3 Years','3-4 Years','4-5 Years','5+ Years'))
                 table.add_hline()
-                for index, row in dfPubMatRD.iterrows():
+                for index, row in dfPubMatBRL.iterrows():
                     table.add_row(row['date'],row['up to 1 year'], row['1-2 years'],row['2-3 years'], row['3-4 years'], row['4-5 years'], row['over 5 years'])
     #3.2.3               
     with doc.create(Subsection('Local Currency')):
@@ -293,7 +299,7 @@ with doc.create(Section('Held by Public')):
             with doc.create(Tabular('l|r|r|r|r|r')) as table:
                 table.add_row(('Date', 'NTN-F', 'NTN-B','LFT','LTN','Other'))
                 table.add_hline()
-                for index, row in dflocByInsRD.iterrows():
+                for index, row in dflocByInsBRL.iterrows():
                     table.add_row(row['date'],row['ntn-f'], row['ntn-b'],row['lft'],row['ltn'],row['others'])
         #3.2.3.2
         with doc.create(Subsubsection('By Holder Sector')):
@@ -312,7 +318,7 @@ with doc.create(Section('Held by Public')):
             with doc.create(Tabular('l|r|r|r|r|r|r|r')) as table:
                 table.add_row(('Date', 'Financial Institutions', 'Funds','Government','Insurance','Non-Residents','Pension','Others'))
                 table.add_hline()
-                for index, row in dflocBySecRD.iterrows():
+                for index, row in dflocBySecBRL.iterrows():
                     table.add_row(row['date'],row['financial institutions'],row['funds'], row['government'],row['insurance'],row['non-residents'],row['pension'],row['others'])
         #3.2.3.3
         with doc.create(Subsubsection('By LFT')):
@@ -331,7 +337,7 @@ with doc.create(Section('Held by Public')):
             with doc.create(Tabular('l|r|r|r|r|r|r|r')) as table:
                 table.add_row(('Date', 'Financial Institutions', 'Funds','Government','Insurance','Non-Residents','Pension','Others'))
                 table.add_hline()
-                for index, row in dflocByLFTRD.iterrows():
+                for index, row in dflocByLFTBRL.iterrows():
                     table.add_row(row['date'],row['financial institutions'],row['funds'], row['government'],row['insurance'],row['non-residents'],row['pension'],row['others'])
         #3.2.3.4
         with doc.create(Subsubsection('By LTN')):
@@ -350,7 +356,7 @@ with doc.create(Section('Held by Public')):
             with doc.create(Tabular('l|r|r|r|r|r|r|r')) as table:
                 table.add_row(('Date', 'Financial Institutions', 'Funds','Government','Insurance','Non-Residents','Pension','Others'))
                 table.add_hline()
-                for index, row in dflocByLTNRD.iterrows():
+                for index, row in dflocByLTNBRL.iterrows():
                     table.add_row(row['date'],row['financial institutions'],row['funds'], row['government'],row['insurance'],row['non-residents'],row['pension'],row['others'])
         #3.2.3.5
         with doc.create(Subsubsection('By NTN-B')):
@@ -369,7 +375,7 @@ with doc.create(Section('Held by Public')):
             with doc.create(Tabular('l|r|r|r|r|r|r|r')) as table:
                 table.add_row(('Date', 'Financial Institutions', 'Funds','Government','Insurance','Non-Residents','Pension','Others'))
                 table.add_hline()
-                for index, row in dflocByNTNRD.iterrows():
+                for index, row in dflocByNTNBRL.iterrows():
                     table.add_row(row['date'],row['financial institutions'],row['funds'], row['government'],row['insurance'],row['non-residents'],row['pension'],row['others'])
 
 doc.append(NoEscape(r'\begin{landscape}'))
@@ -534,7 +540,7 @@ with doc.create(Section('FX Reserves')):
     with doc.create(Tabular('l|r|r|r|r')) as table:
         table.add_row('Date', 'FX', 'Gold','IMF','SDRS')
         table.add_hline()
-        for index, row in dfFXRD.iterrows():
+        for index, row in dfFXBRL.iterrows():
             table.add_row(row['date'], row['fx'], row['gold'], row['imf'],row['sdrs'])
 #4.2
 with doc.create(Section('External Debt')):
@@ -550,7 +556,7 @@ with doc.create(Section('External Debt')):
         doc.append(bold('USD bn\n'))
         doc.append(NoEscape(r'\scalebox{0.7}{'))
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r')) as table:
-            table.add_row('Date', 'Banks (Short)', 'Banks (Long)','Monetary Authorities (Short)','Monetary Authorities (Long)','Central Government (Short)','Central Government (Long)','Others (Short)','Others (Long)','Unclassified')
+            table.add_row('Date', 'Banks (Short)', 'Banks (Long)','Monetary Auth. (Short)','Monetary Auth. (Long)','Central Gov. (Short)','Central Gov. (Long)','Others (Short)','Others (Long)','Unclassified')
             table.add_hline()
             for index, row in dfExtDebtByMatUSD.iterrows():
                 table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central government short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
@@ -559,9 +565,9 @@ with doc.create(Section('External Debt')):
         doc.append(bold('\n\nBRL bn\n'))
         doc.append(NoEscape(r'\scalebox{0.7}{'))
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r')) as table:
-            table.add_row('Date', 'Banks (Short)', 'Banks (Long)','Monetary Authorities (Short)','Monetary Authorities (Long)','Central Government (Short)','Central Government (Long)','Others (Short)','Others (Long)','Unclassified')
+            table.add_row('Date', 'Banks (Short)', 'Banks (Long)','Monetary Auth. (Short)','Monetary Auth. (Long)','Central Gov. (Short)','Central Gov. (Long)','Others (Short)','Others (Long)','Unclassified')
             table.add_hline()
-            for index, row in dfExtDebtByMatRD.iterrows():
+            for index, row in dfExtDebtByMatBRL.iterrows():
                 table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central government short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
         doc.append(NoEscape(r'}'))
     #4.2.2
@@ -584,7 +590,7 @@ with doc.create(Section('External Debt')):
         with doc.create(Tabular('l|r|r|r|r|r')) as table:
             table.add_row('Date', 'ARS', 'USD','EUR','Other','Total')
             table.add_hline()
-            for index, row in dfExtCurRD.iterrows():
+            for index, row in dfExtCurBRL.iterrows():
                 table.add_row(row['date'],row['local currency_'], row['usd_'],row['eur_'],row['others_'], row['Total'])
         #doc.append(NoEscape(r'}'))
 #4.3
@@ -614,7 +620,7 @@ with doc.create(Section('International Investment Position')):
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r')) as table:
             table.add_row('Date', 'Assets-Direct','Assets-Financial Derivatives','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct','Liabilities-Financial Derivatives', 'Liabilities-Portfolio','Liabilities-Other')
             table.add_hline()
-            for index, row in dfIIPRD.iterrows():
+            for index, row in dfIIPBRL.iterrows():
                 table.add_row(row['date'],row['assets - direct investment'],row['assets - financial derivatives (except reserves)'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'],row['liabilities - financial derivatives (except reserves)'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
         doc.append(NoEscape(r'}'))
         doc.append('\n\n* International Investment Position')
@@ -644,7 +650,7 @@ with doc.create(Section('International Investment Position')):
         with doc.create(Tabular('l|r|r|r')) as table:
             table.add_row('Date', 'Debt Securities', 'Equity and Investment Fund Shares','Total')
             table.add_hline()
-            for index, row in dfPortRD.iterrows():
+            for index, row in dfPortBRL.iterrows():
                 table.add_row(row['date'], row['debt securities'], row['equity and investment fund shares'], row['Total'])
         doc.append(NoEscape(r'}'))
 doc.append(NoEscape(r'\end{landscape}'))
@@ -675,7 +681,7 @@ with doc.create(Section('Pension Funds')):
     with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r')) as table:
         table.add_row('Date', 'Gov. Bonds', 'Private Loans','SPE','Fixed Income Inv. Funds ','Stocks','Variable Income Inv. Funds','Alternative Investments','Real Estate','Operations with Participants','Others')
         table.add_hline()
-        for index, row in dfPensionRD.iterrows():
+        for index, row in dfPensionBRL.iterrows():
             table.add_row(row['date'], row['government bonds'], row['private loans and deposits'], row['spe'],row['fixed income investment funds'], row['stocks'], row['variable income investment funds'],row['alternative investments'],row['real estate'],row['operations with participants'],row['others'])
     doc.append(NoEscape(r'}'))
 #Section 5.2    
@@ -699,7 +705,7 @@ with doc.create(Section('Banks')):
     with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r')) as table:
         table.add_row('Date', 'Central Gov.', 'Non-Residents','Financial Corp.','Other Sectors','Private Sector','Public Non-Financial Corp.','Local Gov.','Domestic','Net Foreign Assets')
         table.add_hline()
-        for index, row in dfBankRD.iterrows():
+        for index, row in dfBankBRL.iterrows():
             table.add_row(row['date'], row['claims on central government'], row['claims on non residents'], row['claims on other financial corporations'],row['claims on other sectors'], row['claims on private sector'], row['claims on public non-financial corporations'], row['claims on state and local governments'], row['domestic claims'], row['net foreign assets'])
     doc.append(NoEscape(r'}'))
 
@@ -725,7 +731,7 @@ with doc.create(Section('Investment Funds')):
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table:
             table.add_row('Date', 'Fixed Income', 'Equity','Multimercados','ETF','Pension Funds', 'Foreign Exchange', 'Private Equity Funds', 'Credit Receivables')
             table.add_hline()
-            for index, row in dfInvFuFlRD.iterrows():
+            for index, row in dfInvFuFlBRL.iterrows():
                 table.add_row(row['date'], row['fixed income'], row['equity'], row['multimercados'],row['etf'], row['pension funds'], row['foreign exchange'], row['private equity funds (fip)'], row['credit receivables (fidc)'])
         doc.append(NoEscape(r'}'))
     #5.3.2
@@ -748,7 +754,7 @@ with doc.create(Section('Investment Funds')):
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r')) as table:
             table.add_row('Date', 'Fixed Income', 'Equity','Multimercados','ETF','Pension Funds', 'Foreign Exchange', 'Private Equity Funds', 'Credit Receivables', 'Real Estate', 'Offshore')
             table.add_hline()
-            for index, row in dfInvAUMRD.iterrows():
+            for index, row in dfInvAUMBRL.iterrows():
                 table.add_row(row['date'], row['fixed income'], row['equity'], row['multimercados'],row['etf'], row['pension funds'], row['foreign exchange'], row['private equity funds (fip)'], row['credit receivables (fidc)'], row['real estate (fii)'], row['offshore'])
         doc.append(NoEscape(r'}'))
 
