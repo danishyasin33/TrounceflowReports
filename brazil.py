@@ -610,7 +610,7 @@ with doc.create(Section('Flows')):
 
 #3.4
 with doc.create(Section('Equities')):
-    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/mexico/#tab_equity}{View the chart }"))
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/brazil/#tab_equityflowcharts}{View the chart }"))
     doc.append('on trounceﬂow.com and download the data straight from the chart\n')
     #doc.append('Gross debt of the central administration (excluding eligible debt restructuring pending):\n')
     #doc.append(NewPage())
@@ -672,7 +672,7 @@ with doc.create(Section('External Debt')):
             table.add_row('Date', 'Banks (Short)', 'Banks (Long)','Monetary Auth. (Short)','Monetary Auth. (Long)','Central Gov. (Short)','Central Gov. (Long)','Others (Short)','Others (Long)','Unclassified')
             table.add_hline()
             for index, row in dfExtDebtByMatUSD.iterrows():
-                table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central government short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
+                table.add_row(row['date'], row['banks short-term'], row['banks long-term'], row['monetary authorities short-term'], row['monetary authorities long-term'], row['central governnt short-term'], row['central government long-term'], row['other sectors short-term'], row['other sectors short-term'], row['unclassified'])
         doc.append(NoEscape(r'}'))
 
         doc.append(bold('\n\nBRL bn\n'))
@@ -692,7 +692,7 @@ with doc.create(Section('External Debt')):
         doc.append(bold('USD bn\n'))
         #doc.append(NoEscape(r'\scalebox{0.8}{'))
         with doc.create(Tabular('l|r|r|r|r|r')) as table:
-            table.add_row('Date', 'ARS', 'USD','EUR','Other','Total')
+            table.add_row('Date', 'BRL', 'USD','EUR','Other','Total')
             table.add_hline()
             for index, row in dfExtCurUSD.iterrows():
                 table.add_row(row['date'],row['local currency_'], row['usd_'],row['eur_'],row['others_'], row['Total'])
@@ -701,7 +701,7 @@ with doc.create(Section('External Debt')):
         doc.append(bold('\n\nBRL bn\n'))
         #doc.append(NoEscape(r'\scalebox{0.8}{'))
         with doc.create(Tabular('l|r|r|r|r|r')) as table:
-            table.add_row('Date', 'ARS', 'USD','EUR','Other','Total')
+            table.add_row('Date', 'BRL', 'USD','EUR','Other','Total')
             table.add_hline()
             for index, row in dfExtCurBRL.iterrows():
                 table.add_row(row['date'],row['local currency_'], row['usd_'],row['eur_'],row['others_'], row['Total'])
