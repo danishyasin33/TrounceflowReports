@@ -96,17 +96,68 @@ augDate2 = '30/08/2019'
 sepDate = '30/09/2019'
 octDate = '01/10/2019'
 octDate2 = '31/10/2019'
+novDate = '30/11/2019'
 
 #___________________SUMMARY_____________________
 #central government
 dfResUSDMay = dfResUSD.loc[dfResUSD['date'] == mayDate]
 dfResBRLMay = dfResBRL.loc[dfResBRL['date'] == mayDate]
-
 dfByMatUSDMay = dfByMatUSD.loc[dfByMatUSD['date'] == mayDate]
 dfByMatBRLMay = dfByMatBRL.loc[dfByMatBRL['date'] == mayDate]
+dfByStockUSDMay = dfByStockUSD.loc[dfByStockUSD['date'] == mayDate]
+dfByStockBRLMay = dfByStockBRL.loc[dfByStockBRL['date'] == mayDate]
 
+#Other Public Debt
+dfCenBankPorUSDOct = dfCenBankPorUSD.loc[dfCenBankPorUSD['date'] == octDate2]
+dfCenBankPorBRLOct = dfCenBankPorBRL.loc[dfCenBankPorBRL['date'] == octDate2]
+dfTotalStUSDOct = dfTotalStUSD.loc[dfTotalStUSD['date'] == octDate2]
+dfTotalStBRLOct = dfTotalStBRL.loc[dfTotalStBRL['date'] == octDate2]
+    #public
+dfUSDOct = dfUSD.loc[dfUSD['date'] == octDate2]
+dfBRLOct = dfBRL.loc[dfBRL['date'] == octDate2]
+dfPubMatUSDOct = dfPubMatUSD.loc[dfPubMatUSD['date'] == octDate2]
+dfPubMatBRLOct = dfPubMatBRL.loc[dfPubMatBRL['date'] == octDate2]
+        #Local Currency
+dflocByInsUSDOct = dflocByInsUSD.loc[dflocByInsUSD['date'] == octDate2]
+dflocByInsBRLOct = dflocByInsBRL.loc[dflocByInsBRL['date'] == octDate2]
 
+dflocBySecUSDOct = dflocBySecUSD.loc[dflocBySecUSD['date'] == octDate2]
+dflocBySecBRLOct = dflocBySecBRL.loc[dflocBySecBRL['date'] == octDate2]
 
+dflocByLFTUSDOct = dflocByLFTUSD.loc[dflocByLFTUSD['date'] == octDate2]
+dflocByLFTBRLOct = dflocByLFTBRL.loc[dflocByLFTBRL['date'] == octDate2]
+
+dflocByLTNUSDOct = dflocByLTNUSD.loc[dflocByLTNUSD['date'] == octDate2]
+dflocByLTNBRLOct = dflocByLTNBRL.loc[dflocByLTNBRL['date'] == octDate2]
+
+dflocByNTNUSDOct = dflocByNTNUSD.loc[dflocByNTNUSD['date'] == octDate2]
+dflocByNTNBRLOct = dflocByNTNBRL.loc[dflocByNTNBRL['date'] == octDate2]
+
+#Flows
+    #total stock
+dfForHolStBRLOct = dfForHolStBRL.loc[dfForHolStBRL['date'] == octDate2]
+dfForHolFlBRLOct = dfForHolFlBRL.loc[dfForHolFlBRL['date'] == octDate2]
+dfForHolStUSDOct = dfForHolStUSD.loc[dfForHolStUSD['date'] == octDate2]
+#Equities
+dfEquPortFlUSDMay = dfEquPortFlUSD.loc[dfEquPortFlUSD['date'] == mayDate]
+dfEquPortFlBRLMay = dfEquPortFlBRL.loc[dfEquPortFlBRL['date'] == mayDate]
+
+#External Sector
+dfFXUSDOct = dfFXUSD.loc[dfFXUSD['date'] == octDate2]
+dfFXBRLOct = dfFXBRL.loc[dfFXBRL['date'] == octDate2]
+dfExtDebtByMatUSDMar = dfExtDebtByMatUSD.loc[dfExtDebtByMatUSD['date'] == marDate]
+dfExtDebtByMatBRLMar = dfExtDebtByMatBRL.loc[dfExtDebtByMatBRL['date'] == marDate]
+dfExtCurUSDJun = dfExtCurUSD.loc[dfExtCurUSD['date'] == junDate]
+dfExtCurBRLJun = dfExtCurBRL.loc[dfExtCurBRL['date'] == junDate]
+
+#Domestic Sector
+dfPensionUSDJun = dfPensionUSD.loc[dfPensionUSD['date'] == junDate]
+dfPensionBRLJun = dfPensionBRL.loc[dfPensionBRL['date'] == junDate]
+dfBankUSDSep = dfBankUSD.loc[dfBankUSD['date'] == sepDate]
+dfBankBRLSep = dfBankBRL.loc[dfBankBRL['date'] == sepDate]
+
+dfInvAUMUSDNov = dfFXUSD.loc[dfFXUSD['date'] == novDate]
+dfFXBRLNov = dfFXBRL.loc[dfFXBRL['date'] == novDate]
 
 #_______________________________________________
 doc = Document(documentclass='report', document_options=['11pt, notitlepage'])
@@ -140,6 +191,27 @@ doc.append(NewPage())
 #Summary Chapter 1
 doc.append(NoEscape(r'\chapter{Executive Summary}'))
 doc.append(NewPage())
+#2.1
+with doc.create(Section('Central Government Debt')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date', 'Type', 'USD bn (Total)','BRL bn (Total)'))
+        table.add_hline()
+        #May
+        table.add_row(MultiRow(3,data='May 2019'),'By Residency[Internal; External]',dfResUSDMay['Total'].values[0],dfResBRLMay['Total'].values[0])
+        table.add_row('','By Maturity[Short-Term; Long-Term]',dfByMatUSDMay['Total'].values[0],dfByMatBRLMay['Total'].values[0])
+        table.add_row('','Total Stock',dfByStockUSDMay['Total'].values[0],dfByStockBRLMay['Total'].values[0])
+
+#3
+with doc.create(Section('Other Public Debt')):
+    #PEMEX Debt section 3.2
+    with doc.create(Subsection('PEMEX Debt')):
+        with doc.create(Tabular('l|l|r|r')) as table:
+            table.add_row(('Date', 'Type', 'USD bn (Total)','MXN bn (Total)'))
+            table.add_hline()
+            #June
+            table.add_row(MultiRow(3,data='Jun 2019'), 'Debt by Currency', dfPEMEXByCurUSDJun['Total'].values[0], dfPEMEXByCurMXNJun['Total'].values[0])
+            table.add_row('', 'Debt by Maturity', dfPEMEXByMatUSDJun['Total'].values[0], dfPEMEXByMatMXNJun['Total'].values[0])
+            table.add_row('', 'Debt by Interest', dfPEMEXByInterUSDJun['Total'].values[0], dfPEMEXByInterMXNJun['Total'].values[0])
 
 
 #Chapter 2 
