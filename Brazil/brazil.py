@@ -156,8 +156,8 @@ dfPensionBRLJun = dfPensionBRL.loc[dfPensionBRL['date'] == junDate]
 dfBankUSDSep = dfBankUSD.loc[dfBankUSD['date'] == sepDate]
 dfBankBRLSep = dfBankBRL.loc[dfBankBRL['date'] == sepDate]
 
-dfInvAUMUSDNov = dfFXUSD.loc[dfFXUSD['date'] == novDate]
-dfFXBRLNov = dfFXBRL.loc[dfFXBRL['date'] == novDate]
+dfInvAUMUSDNov = dfInvAUMUSD.loc[dfInvAUMUSD['date'] == novDate]
+dfInvAUMBRLNov = dfInvAUMBRL.loc[dfInvAUMBRL['date'] == novDate]
 
 #_______________________________________________
 doc = Document(documentclass='report', document_options=['11pt, notitlepage'])
@@ -203,15 +203,56 @@ with doc.create(Section('Central Government Debt')):
 
 #3
 with doc.create(Section('Other Public Debt')):
-    #PEMEX Debt section 3.2
-    with doc.create(Subsection('PEMEX Debt')):
+    #3.1,3.2,3.3
+    with doc.create(Tabular('l|l|l|l|r|r')) as table:
+        table.add_row(('Date', MultiColumn(3,data='Type'), 'USD bn (Total)','BRL bn (Total)'))
+        table.add_hline()
+        #June
+        table.add_row(MultiRow(9,data='Oct 2019'),MultiColumn(3,data='In Central Bank') , dfCenBankPorUSDOct['Total'].values[0], dfCenBankPorBRLOct['Total'].values[0])
+        table.add_row('',MultiColumn(3,data='Total Stock') , dfTotalStUSDOct['Total'].values[0], dfTotalStBRLOct['Total'].values[0])
+        table.add_hline(2,6)
+        table.add_row('', MultiRow(7,data='Held By Public'),MultiColumn(2,data='By Currency'), dfUSDOct['Total'].values[0], dfBRLOct['Total'].values[0])
+        table.add_row('', '', MultiColumn(2,data='By Maturity'), dfPubMatUSDOct['Total'].values[0], dfPubMatBRLOct['Total'].values[0])
+        table.add_hline(3,6)
+        table.add_row('', '', MultiRow(5,data='Local Currency'),'By Instrument' , dflocByInsUSDOct['Total'].values[0],dflocByInsBRLOct['Total'].values[0])
+        table.add_row('', '', '','By Holder' , dflocBySecUSDOct['Total'].values[0],dflocBySecBRLOct['Total'].values[0])
+        table.add_row('', '', '','LFT By Holder' , dflocByLFTUSDOct['Total'].values[0],dflocByLFTBRLOct['Total'].values[0])
+        table.add_row('', '', '','LTN By Holder' , dflocByLTNUSDOct['Total'].values[0],dflocByLTNBRLOct['Total'].values[0])
+        table.add_row('', '', '','NTN-B By Holder' , dflocByNTNUSDOct['Total'].values[0],dflocByNTNBRLOct['Total'].values[0])
+
+#3.4 Flows
+    with doc.create(Subsection('Flows')):
         with doc.create(Tabular('l|l|r|r')) as table:
-            table.add_row(('Date', 'Type', 'USD bn (Total)','MXN bn (Total)'))
+            table.add_row(('Date', 'Type', 'USD bn (Total)','BRL bn (Total)'))
             table.add_hline()
             #June
-            table.add_row(MultiRow(3,data='Jun 2019'), 'Debt by Currency', dfPEMEXByCurUSDJun['Total'].values[0], dfPEMEXByCurMXNJun['Total'].values[0])
-            table.add_row('', 'Debt by Maturity', dfPEMEXByMatUSDJun['Total'].values[0], dfPEMEXByMatMXNJun['Total'].values[0])
-            table.add_row('', 'Debt by Interest', dfPEMEXByInterUSDJun['Total'].values[0], dfPEMEXByInterMXNJun['Total'].values[0])
+            table.add_row(MultiRow(2,data='Oct 2019'),'Stock',dfForHolStUSDOct['foreign holdings'].values[0],dfForHolStBRLOct['foreign holdings'].values[0])
+            table.add_row('','Flow','-',dfForHolFlBRLOct['foreign holdings'].values[0])
+            table.add_hline()
+            table.add_row('May 2019','Equity Flow',dfEquPortFlUSDMay['flow'].values[0],dfEquPortFlBRLMay['flow'].values[0])
+
+#4
+with doc.create(Section('External Sector')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date','Type', 'USD bn (Total)','BRL bn (Total)'))
+        table.add_hline()
+    
+        table.add_row('Oct 2019','FX Reserves', dfFXUSDOct['Total'].values[0], dfFXBRLOct['Total'].values[0])
+        table.add_hline()
+        table.add_row('June 2019', 'By Currency', dfExtCurUSDJun['Total'].values[0], dfExtCurBRLJun['Total'].values[0])
+        table.add_hline()
+        table.add_row('Mar 2019', 'By Maturity', dfExtDebtByMatUSDMar['Total'].values[0], dfExtDebtByMatBRLMar['Total'].values[0])
+ 
+#5
+with doc.create(Section('Domestic Sector')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date','Type', 'USD bn (Total)','BRL bn (Total)'))
+        table.add_hline()
+        table.add_row('Nov 2019', 'AUMS', dfInvAUMUSDNov['Total'].values[0], dfInvAUMBRLNov['Total'].values[0])
+        table.add_hline()
+        table.add_row('Sep 2019', 'Banks', dfBankUSDSep['Total'].values[0], dfBankBRLSep['Total'].values[0])
+        table.add_hline()
+        table.add_row('Jun 2019', 'Pension Funds', dfPensionUSDJun['Total'].values[0], dfPensionBRLJun['Total'].values[0])
 
 
 #Chapter 2 
