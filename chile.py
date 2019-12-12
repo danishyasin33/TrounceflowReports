@@ -52,6 +52,9 @@ dfInsurCLP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/
 
 
 #_______________________________________________
+mar18Date = '12/03/2018'
+sep18Date = '30/09/2018'
+janDate = '31/01/2019'
 marDate = '31/03/2019'
 mayDate = '31/05/2019'
 junDate = '30/06/2019'
@@ -59,12 +62,47 @@ julDate = '31/07/2019'
 augDate = '31/08/2019'
 augDate2 = '30/08/2019'
 sepDate = '30/09/2019'
+sepDate2 = '01/09/2019'
 octDate = '01/10/2019'
 octDate2 = '31/10/2019'
 novDate = '30/11/2019'
 
 #___________________SUMMARY_____________________
+#central government
+dfResUSDJun = dfResUSD.loc[dfResUSD['date'] == junDate]
+dfResCLPJun = dfResCLP.loc[dfResCLP['date'] == junDate]
+dfUSDJun = dfUSD.loc[dfUSD['date'] == junDate]
+dfCLPJun = dfCLP.loc[dfCLP['date'] == junDate]
 
+#Other Public Debt
+dfForHolStCLPOct = dfForHolStCLP.loc[dfForHolStCLP['date'] == octDate2]
+dfForHolFlCLPOct = dfForHolFlCLP.loc[dfForHolFlCLP['date'] == octDate2]
+
+dfForHolStUSDOct = dfForHolStUSD.loc[dfForHolStUSD['date'] == octDate2]
+dfForHolFlUSDOct = dfForHolFlUSD.loc[dfForHolFlUSD['date'] == octDate2]
+
+dfEquPortFlUSDSep = dfEquPortFlUSD.loc[dfEquPortFlUSD['date'] == sepDate2]
+dfEquPortFlCLPSep = dfEquPortFlCLP.loc[dfEquPortFlCLP['date'] == sepDate2]
+
+#External Sector
+dfFXUSDOct = dfFXUSD.loc[dfFXUSD['date'] == octDate2]
+dfFXCLPOct = dfFXCLP.loc[dfFXCLP['date'] == octDate2]
+
+dfExtDebtByMatUSDMar = dfExtDebtByMatUSD.loc[dfExtDebtByMatUSD['date'] == marDate]
+dfExtDebtByMatCLPMar = dfExtDebtByMatCLP.loc[dfExtDebtByMatCLP['date'] == marDate]
+
+dfExtCurUSDSep = dfExtCurUSD.loc[dfExtCurUSD['date'] == sep18Date]
+dfExtCurCLPSep = dfExtCurCLP.loc[dfExtCurCLP['date'] == sep18Date]
+
+#Domestic Sector
+dfPensionUSDSep = dfPensionUSD.loc[dfPensionUSD['date'] == sepDate]
+dfPensionCLPSep = dfPensionCLP.loc[dfPensionCLP['date'] == sepDate]
+
+dfBankUSDJan = dfBankUSD.loc[dfBankUSD['date'] == janDate]
+dfBankCLPJan = dfBankCLP.loc[dfBankCLP['date'] == janDate]
+
+dfInsurUSDMar18 = dfInsurUSD.loc[dfInsurUSD['date'] == mar18Date]
+dfInsurCLPMar18 = dfInsurCLP.loc[dfInsurCLP['date'] == mar18Date]
 
 #_______________________________________________
 doc = Document(documentclass='report', document_options=['11pt, notitlepage'])
@@ -98,6 +136,50 @@ doc.append(NewPage())
 #Summary Chapter 1
 doc.append(NoEscape(r'\chapter{Executive Summary}'))
 doc.append(NewPage())
+
+#2.1
+with doc.create(Section('Central Government Debt')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date', 'Type', 'USD bn (Total)','CLP bn (Total)'))
+        table.add_hline()
+        #Jun
+        table.add_row(MultiRow(2,data='Jun 2019'),'By Residency[Internal; External]',dfResUSDJun['Total'].values[0],dfResCLPJun['Total'].values[0])
+        table.add_row('','By Currency[Domestic; External]',dfUSDJun['Total'].values[0],dfCLPJun['Total'].values[0])
+#3
+with doc.create(Section('Other Public Debt')):
+#3.4 Flows
+    with doc.create(Subsection('Flows')):
+        with doc.create(Tabular('l|l|r|r')) as table:
+            table.add_row(('Date', 'Type', 'USD bn (Total)','CLP bn (Total)'))
+            table.add_hline()
+            #June
+            table.add_row(MultiRow(2,data='Oct 2019'),'Stock',dfForHolStUSDOct['foreign holdings'].values[0],dfForHolStCLPOct['foreign holdings'].values[0])
+            table.add_row('','Flow',dfForHolFlUSDOct['foreign holdings'].values[0],dfForHolFlCLPOct['foreign holdings'].values[0])
+            table.add_hline()
+            table.add_row('Sep 2019','Equity Flow',dfEquPortFlUSDSep['flow'].values[0],dfEquPortFlCLPSep['flow'].values[0])
+        
+#4
+with doc.create(Section('External Sector')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date','Type', 'USD bn (Total)','CLP bn (Total)'))
+        table.add_hline()
+    
+        table.add_row('Oct 2019','FX Reserves', dfFXUSDOct['Total'].values[0], dfFXCLPOct['Total'].values[0])
+        table.add_hline()
+        table.add_row('Mar 2019', 'By Maturity', dfExtDebtByMatUSDMar['Total'].values[0], dfExtDebtByMatCLPMar['Total'].values[0])
+        table.add_hline()
+        table.add_row('Sep 2018', 'By Currency', dfExtCurUSDSep['Total'].values[0], dfExtCurCLPSep['Total'].values[0])
+
+#5
+with doc.create(Section('Domestic Sector')):
+    with doc.create(Tabular('l|l|r|r')) as table:
+        table.add_row(('Date','Type', 'USD bn (Total)','CLP bn (Total)'))
+        table.add_hline()
+        table.add_row('Sep 2019', 'Pension Fund', dfPensionUSDSep['Total'].values[0], dfPensionCLPSep['Total'].values[0])
+        table.add_hline()
+        table.add_row('Jan 2019', 'Banks', dfBankUSDJan['Total'].values[0], dfBankCLPJan['Total'].values[0])
+        table.add_hline()
+        table.add_row('Mar 2018', 'Ins. Comp.', dfInsurUSDMar18['Total'].values[0], dfInsurCLPMar18['Total'].values[0])
 
 
 #Chapter 2 
