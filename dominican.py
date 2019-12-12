@@ -20,6 +20,21 @@ dfResDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/ap
 dfUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-by-currency-in-dominican-republic-chart.csv')
 dfDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/central-government-debt-stock-by-currency-in-dominican-republic-chart-in-dominican-peso.csv')
 
+#Other Public Debt
+dfByHoldPerDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/trounceflowbondholdingspercentagechart/composition-of-holdings-in-dominican-republic-chart-in-dominican-peso.csv')
+    #flows
+        #total stock
+dfForHolStDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/foreign-holdings-in-dominican-republic-chart-in-dominican-peso.csv')
+dfForHolFlDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/foreign-holdings-flow-in-dominican-republic-chart-in-dominican-peso.csv')
+dfForHolStUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/foreign-holdings-in-dominican-republic-chart.csv')
+dfForHolFlUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/foreign-holdings-flow-in-dominican-republic-chart.csv')
+        #by holder sector
+dfForHolbyTypeStDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-foreign-holders-by-type-of-investor-in-dominican-republic-chart-in-dominican-peso.csv')
+dfForHolbyTypeFlDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-foreign-holders-by-type-of-investor-flow-in-dominican-republic-chart-in-dominican-peso.csv')
+dfForHolbyTypeStUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-foreign-holders-by-type-of-investor-in-dominican-republic-chart.csv')
+dfForHolbyTypeFlUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-foreign-holders-by-type-of-investor-flow-in-dominican-republic-chart.csv')
+
+
 #_______________________________________________
 mar18Date = '12/03/2018'
 sep18Date = '30/09/2018'
@@ -121,6 +136,133 @@ with doc.create(Section('By Currency [Domestic (DOP); External]')):
         for index, row in dfDOP.iterrows():
             table.add_row(row['date'],row['domestic currency'], row['foreign currency'],row['Total'])
 
+doc.append(NoEscape(r'\chapter{Other Public Debt}'))
+doc.append(NewPage())
+#3.1
+doc.append(NoEscape(r'\begin{landscape}'))
+with doc.create(Section('By Holder (%)')):
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_lc-percent}{View the chart }"))
+    doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+    
+    doc.append(bold('\nPercent (%)\n\n'))
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('l|r|r|r|r|r|r|r')) as table: 
+        table.add_row(('Date','Central Administration','Commercial Banks','Decentralized Public Institutions','Financial Intermediation Public Entities','Financial Public Institutions','Financial Sector','Financing And Loans Corporations'))
+        table.add_hline()
+        for index, row in dfByHoldPerDOP.iterrows():
+            table.add_row(row['date'],row['central administration'],row['commercial banks'],row['decentralized public institutions'],row['financial intermediation public entities'],row['financial public institutions'],row['financial sector'],row['financing and loans corporations'])
+    doc.append(NoEscape(r'}'))
 
+    doc.append("\n\n...")
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('r|r|r|r|r|r|r|r')) as table: 
+        table.add_row(('Foreign Residence','Insurance Companies','Loans And Credit Cooperatives','Mutual Funds Administration','Natural People','Non-Financial Sector','Non Financial Public Companies','Non Financial Public Sector'))
+        table.add_hline()
+        for index, row in dfByHoldPerDOP.iterrows():
+            table.add_row(row['foreign residence'],row['insurance companies'],row['loans and credit cooperatives'],row['mutual and investments funds administration'],row['natural people'],row['non financial private sector'],row['non financial public companies'],row['non financial public sector'])
+    doc.append(NoEscape(r'}'))
+
+    doc.append("\n\n...")
+    doc.append(NoEscape(r'\scalebox{0.6}{'))
+    with doc.create(Tabular('r|r|r|r|r|r|r|r')) as table: 
+        table.add_row(('Non-Profits Institutions Serving To Households','Other Financial','Pension Funds Administration','Private Companies','Remains Of Houses','Savings And Loan Associations','Savings,Credits And Promotion Banks','Stock Exchange'))
+        table.add_hline()
+        for index, row in dfByHoldPerDOP.iterrows():
+            table.add_row(row['non-profits institutions serving to households'],row['other financial'],row['pension funds administration'],row['private companies'],row['remains of houses'],row['savings and loan associations'],row['savings,credits and promotion banks'],row['stock exchange'])
+    doc.append(NoEscape(r'}'))
+doc.append(NoEscape(r'\end{landscape}'))
+#3.2
+with doc.create(Section('Flows')):
+    #3.2.1
+    with doc.create(Subsection('Total Stock')):
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_stockfh}{View the chart }"))
+        doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+        doc.append('Recent values are as follows:\n')   
+
+        doc.append(bold('Stock (DOP bn)\n'))
+        with doc.create(Tabular('l|r')) as table: 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolStDOP.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+        #doc.append(NewPage())
+        doc.append(bold('\nFlow (DOP bn)\n'))
+        with doc.create(Tabular('l|r')) as table: 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolFlDOP.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+        
+        doc.append(bold('\n\nStock (USD bn)\n'))
+        with doc.create(Tabular('l|r')) as table: 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolStUSD.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+
+        doc.append(bold('\nFlow (USD bn)\n'))
+        with doc.create(Tabular('l|r')) as table: 
+            table.add_row(('Date', 'Foreign Holdings'))
+            table.add_hline()
+            for index, row in dfForHolFlUSD.iterrows():
+                table.add_row(row['date'], row['foreign holdings'])
+    #3.2.2
+    with doc.create(Subsection('By Holder Sector Type')):
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_stockfh}{View the chart }"))
+        doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+        doc.append('Recent values are as follows:\n')   
+        
+        doc.append(bold('Stock (DOP bn)\n'))
+        with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: 
+            table.add_row(('Date','Financial Sector','Juridical Person','Mutual Funds','Natural People','Natural Person Two','Non-Financial Sector','Private Companies','Stock Exchange'))
+            table.add_hline()
+            for index, row in dfForHolbyTypeStDOP.iterrows():
+                table.add_row(row['date'],row['financial sector'],row['juridical person'],row['mutual and investments funds administration'],row['natural people'],row['natural person'],row['non financial private sector'],row['private companies'],row['stock exchange'])
+        #doc.append(NewPage())
+        doc.append(bold('\nFlow (DOP bn)\n'))
+        with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: 
+            table.add_row(('Date','Financial Sector','Juridical Person','Mutual Funds','Natural People','Natural Person Two','Non-Financial Sector','Private Companies','Stock Exchange'))
+            table.add_hline()
+            for index, row in dfForHolbyTypeFlDOP.iterrows():
+                table.add_row(row['date'],row['financial sector'],row['juridical person'],row['mutual and investments funds administration'],row['natural people'],row['natural person'],row['non financial private sector'],row['private companies'],row['stock exchange'])
+        
+        doc.append(bold('\n\nStock (USD bn)\n'))
+        with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: 
+            table.add_row(('Date','Financial Sector','Juridical Person','Mutual Funds','Natural People','Natural Person Two','Non-Financial Sector','Private Companies','Stock Exchange'))
+            table.add_hline()
+            for index, row in dfForHolbyTypeStUSD.iterrows():
+                table.add_row(row['date'],row['financial sector'],row['juridical person'],row['mutual and investments funds administration'],row['natural people'],row['natural person'],row['non financial private sector'],row['private companies'],row['stock exchange'])
+
+        doc.append(bold('\nFlow (USD bn)\n'))
+        with doc.create(Tabular('l|r|r|r|r|r|r|r|r')) as table: 
+            table.add_row(('Date','Financial Sector','Juridical Person','Mutual Funds','Natural People','Natural Person Two','Non-Financial Sector','Private Companies','Stock Exchange'))
+            table.add_hline()
+            for index, row in dfForHolbyTypeFlUSD.iterrows():
+                table.add_row(row['date'],row['financial sector'],row['juridical person'],row['mutual and investments funds administration'],row['natural people'],row['natural person'],row['non financial private sector'],row['private companies'],row['stock exchange'])
+
+#chapter 4
+doc.append(NoEscape(r'\chapter{External Sector}'))
+doc.append(NewPage())
+
+doc.append(NoEscape(r'\begin{landscape}'))
+#4.1
+with doc.create(Section('FX Reserves')):
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_fxreserves}{View the chart }"))
+    doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+    doc.append('Recent values are as follows:\n')   
+
+    doc.append(bold('USD bn\n'))
+    with doc.create(Tabular('l|r|r|r|r')) as table:
+        table.add_row('Date', 'FX', 'Gold','IMF','SDRS')
+        table.add_hline()
+        for index, row in dfFXUSD.iterrows():
+            table.add_row(row['date'], row['fx'], row['gold'], row['imf'],row['sdrs'])
+
+    doc.append(bold('\nDOP bn\n'))
+    with doc.create(Tabular('l|r|r|r|r')) as table:
+        table.add_row('Date', 'FX', 'Gold','IMF','SDRS')
+        table.add_hline()
+        for index, row in dfFXDOP.iterrows():
+            table.add_row(row['date'], row['fx'], row['gold'], row['imf'],row['sdrs'])
 
 doc.generate_pdf('Dominican Republic', clean=True)
