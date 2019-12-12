@@ -34,6 +34,16 @@ dfForHolbyTypeFlDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounce
 dfForHolbyTypeStUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/composition-of-foreign-holders-by-type-of-investor-in-dominican-republic-chart.csv')
 dfForHolbyTypeFlUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingsflowchart/composition-of-foreign-holders-by-type-of-investor-flow-in-dominican-republic-chart.csv')
 
+#External Sector
+dfFXUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/imf-fx-reserves-in-dominican-republic-chart.csv')
+dfFXDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/imf-fx-reserves-in-dominican-republic-chart-in-dominican-peso.csv')
+
+dfIIPUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-investment-position-in-dominican-republic-chart.csv')
+dfIIPDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-investment-position-in-dominican-republic-chart-in-dominican-peso.csv')
+
+dfPortUSD = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-dominican-republic-chart.csv')
+dfPortDOP = impFunc.get_data_TrounceFlow(authCode,'https://www.trounceflow.com/api/v1/chart/granularbondholdingschart/international-portfolio-position-in-dominican-republic-chart-in-dominican-peso.csv')
+
 
 #_______________________________________________
 mar18Date = '12/03/2018'
@@ -264,5 +274,67 @@ with doc.create(Section('FX Reserves')):
         table.add_hline()
         for index, row in dfFXDOP.iterrows():
             table.add_row(row['date'], row['fx'], row['gold'], row['imf'],row['sdrs'])
+
+
+#4.2
+with doc.create(Section('International Investment Position')):
+    
+    #section 4.2.1
+    with doc.create(Subsection('Assets & Liabilities')):
+        # doc.append(NoEscape(r"\href{https://www.indec.gob.ar/}{View the data }"))
+        # doc.append('from the primary source (argentina.gob.ar)\n')
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_al}{View the chart }"))
+        doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+        doc.append('Recent values are as follows:\n')
+
+        doc.append(bold('USD bn\n'))
+        doc.append(NoEscape(r'\scalebox{0.6}{'))
+        with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r')) as table:
+            table.add_row('Date', 'Assets-Direct','Assets-Financial Derivatives','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct','Liabilities-Financial Derivatives', 'Liabilities-Portfolio','Liabilities-Other')
+            table.add_hline()
+            for index, row in dfIIPUSD.iterrows():
+                table.add_row(row['date'],row['assets - direct investment'],row['assets - financial derivatives (except reserves)'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'],row['liabilities - financial derivatives (except reserves)'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
+        doc.append(NoEscape(r'}'))
+        
+        doc.append('\n\n* International Investment Position\n')
+        #doc.append(NewPage())
+        doc.append(bold('DOP bn\n'))
+        doc.append(NoEscape(r'\scalebox{0.6}{'))
+        with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r')) as table:
+            table.add_row('Date', 'Assets-Direct','Assets-Financial Derivatives','Assets-Reserve','Assets-Portfolio','Assets-Other','* IIP','Liabilities-Direct','Liabilities-Financial Derivatives', 'Liabilities-Portfolio','Liabilities-Other')
+            table.add_hline()
+            for index, row in dfIIPDOP.iterrows():
+                table.add_row(row['date'],row['assets - direct investment'],row['assets - financial derivatives (except reserves)'], row['assets - reserve assets'], row['assets - portfolio investment'], row['assets - other investment'], row['international investment position'], row['liabilities - direct investment'],row['liabilities - financial derivatives (except reserves)'], row['liabilities - portfolio investment'], row['liabilities - other investment'])
+        doc.append(NoEscape(r'}'))
+        doc.append('\n\n* International Investment Position')
+
+    #doc.append(NoEscape(r'\end{landscape}'))
+
+    #4.2.2
+    #doc.append(NewPage())
+    with doc.create(Subsection('Portfolio Liabilities')):
+        doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_portfoliol}{View the chart }"))
+        doc.append('on trounceﬂow.com and download the data straight from the chart\n')
+        doc.append('Recent values are as follows:\n')
+        #doc.append(NewPage())
+        doc.append(bold('USD bn\n'))
+        doc.append(NoEscape(r'\scalebox{0.9}{'))
+        with doc.create(Tabular('l|r|r|r')) as table:
+            table.add_row('Date', 'Debt Securities', 'Equity and Investment Fund Shares','Total')
+            table.add_hline()
+            for index, row in dfPortUSD.iterrows():
+                table.add_row(row['date'], row['debt securities'], row['equity and investment fund shares'], row['Total'])
+        doc.append(NoEscape(r'}'))
+
+        doc.append(bold('\n\nDOP bn\n'))
+        doc.append(NoEscape(r'\scalebox{0.9}{'))
+        with doc.create(Tabular('l|r|r|r')) as table:
+            table.add_row('Date', 'Debt Securities', 'Equity and Investment Fund Shares','Total')
+            table.add_hline()
+            for index, row in dfPortDOP.iterrows():
+                table.add_row(row['date'], row['debt securities'], row['equity and investment fund shares'], row['Total'])
+        doc.append(NoEscape(r'}'))
+doc.append(NoEscape(r'\end{landscape}'))
+
 
 doc.generate_pdf('Dominican Republic', clean=True)
