@@ -127,7 +127,7 @@ with doc.create(Section('By Residency [internal/local/resident; external/foreign
 
 #2.2
 with doc.create(Section('By Currency [Domestic (DOP); External]')):
-    doc.append(NoEscape(r"\hrefhttps://www.trounceflow.com/app/dominican-republic/#tab_bycurrency}{View the chart }"))
+    doc.append(NoEscape(r"\href{https://www.trounceflow.com/app/dominican-republic/#tab_bycurrency}{View the chart }"))
     doc.append('on trounceﬂow.com and download the data straight from the chart\n')
     doc.append('Recent values for the normal situation (paid) debt are as follows:\n')
 
@@ -287,6 +287,7 @@ with doc.create(Section('International Investment Position')):
         doc.append('on trounceﬂow.com and download the data straight from the chart\n')
         doc.append('Recent values are as follows:\n')
 
+        doc.append(NewPage())
         doc.append(bold('USD bn\n'))
         doc.append(NoEscape(r'\scalebox{0.6}{'))
         with doc.create(Tabular('l|r|r|r|r|r|r|r|r|r|r')) as table:
@@ -326,6 +327,7 @@ with doc.create(Section('International Investment Position')):
                 table.add_row(row['date'], row['debt securities'], row['equity and investment fund shares'], row['Total'])
         doc.append(NoEscape(r'}'))
 
+        doc.append(NewPage())
         doc.append(bold('\n\nDOP bn\n'))
         doc.append(NoEscape(r'\scalebox{0.9}{'))
         with doc.create(Tabular('l|r|r|r')) as table:
