@@ -873,4 +873,4 @@ with doc.create(Section('Investment Funds')):
 
 doc.append(NoEscape(r'\end{landscape}'))
 
-doc.generate_pdf('Brazil' ,clean=True)
+doc.generate_pdf('Brazil', clean=True)
