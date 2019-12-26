@@ -1,0 +1,531 @@
+\documentclass[11pt, oneside]{article}      % use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{tablefootnote}
+\usepackage[flushleft]{threeparttable}
+%\setTableNoteFont{\scriptsize}
+\usepackage{geometry}                       % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                          % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                       % Activate for rotated page geometry
+\usepackage[parfill]{parskip}                   % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amsmath} % For table numbering based on Section
+\numberwithin{table}{section}
+\renewcommand\thetable{\thesection.\arabic{table}}
+\usepackage[
+singlelinecheck=false % <-- important
+]{caption}
+\usepackage[labelfont=bf,textfont=md,justification=centering]{caption}
+%\usepackage{placeins} % for fixing table position
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{subfig}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{booktabs} % for toprule,midrule, and bottomrule
+%\usepackage{dirtytalk} % for quotes
+\usepackage{lscape} % changes a page to a landscape
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{intersections,decorations.markings,,pgfplots.colorbrewer,shapes.arrows}
+\usepgfmodule{nonlineartransformations}
+\usepgflibrary{curvilinear}
+\usepgfmodule{nonlineartransformations}
+\tikzset{arrownode/.style={
+    shape=single arrow,
+    single arrow head extend=.75em,
+    single arrow head indent=.25em,
+    minimum width=3em,
+    draw,
+    }
+}
+\usepackage{graphicx}               % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+                                % TeX will automatically convert eps --> pdf in pdflatex        
+\usepackage{amssymb}
+\usepackage{hyperref} %Make this the last package imported
+\usepackage[bottom]{footmisc} % Make footnotes to go to the buttom of a page
+\usepackage[screen,nopanel]{pdfscreen} % Makes sections colorful
+\usepackage{pdfpages} % allows to load a pdf page into latex
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Sharelatex Example},
+    pdfpagemode=FullScreen,
+}
+
+
+
+\title{Trounceflow Countries: Turkey}
+\author{Michael Trounce}
+
+
+\begin{document}
+\includepdf[page={1}]{cover}
+\maketitle
+\begin{abstract}
+   The \lq{Trounceflow Countries}\rq series of \lq{living}\rq documents provide real-time dynamic summaries of macroeconomic data relevant to the flows-and-positions analysis of emerging market
+debt. These macroeconomic data concentrate on the structure of the government bond market
+but also include other useful but hard-to-wrangle data such as the structure of the local institutional investor base. The data is obtained from the Trounceflow App (trounceflow.com) and
+the document data is automatically updated in line with the automatic updates on the App;
+links to the underlying national sources are also given in the \lq{living}\rq documents.
+\end{abstract}
+
+\begin{center}
+\vfill{The values presented in this report are the face values of the bonds}
+\end{center}
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\section{Executive Summary}
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{clrr}
+%\caption{Executive Summary}
+%\midrule
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{Central Government Debt}}} \\
+&&&\\
+\toprule
+\textit{\textbf{Date}} & \textit{\textbf{Type}} & \textit{\textbf{USD bn (Total)}} & \textit{\textbf{TRY bn (Total)}}\\
+\midrule
+\VAR{main_dic['exe_sum']['cgd_by_inst']['date']} &  By Instrument  & \VAR{main_dic['exe_sum']['cgd_by_inst']['usd']}  &\VAR{main_dic['exe_sum']['cgd_by_inst']['try']}  \\
+\VAR{main_dic['exe_sum']['cgd_by_cur']['date']} &  By Currency (Domestic (TRY), Foreign) & \VAR{main_dic['exe_sum']['cgd_by_cur']['usd']}    &\VAR{main_dic['exe_sum']['cgd_by_cur']['try']}  \\
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{Local Currency Government Debt}}} \\
+&&&\\
+\midrule
+\textit{\textbf{Date}} & \textit{\textbf{Type}} & \textit{\textbf{USD bn (Total)}} & \textit{\textbf{TRY bn (Total)}}\\
+\midrule
+\VAR{main_dic['exe_sum']['lcgd_by_holder']['date']} &  By Holder & \VAR{main_dic['exe_sum']['lcgd_by_holder']['usd']}    &\VAR{main_dic['exe_sum']['lcgd_by_holder']['try']}  \\
+%\midrule
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{Domestic sectors}}} \\
+&&&\\
+\midrule
+\textit{\textbf{Date}} & \textit{\textbf{Type}} & \textit{\textbf{USD bn (Total)}} & \textit{\textbf{TRY bn (Total)}}\\
+\midrule
+\VAR{main_dic['exe_sum']['ds_ic']['date']} &  By Insurance Companies & \VAR{main_dic['exe_sum']['ds_ic']['usd']}    &\VAR{main_dic['exe_sum']['ds_ic']['try']}  \\
+\VAR{main_dic['exe_sum']['ds_b']['date']} &  By Banks & \VAR{main_dic['exe_sum']['ds_b']['usd']}    &\VAR{main_dic['exe_sum']['ds_b']['try']}  \\
+\VAR{main_dic['exe_sum']['bd_by_cur']['date']} &  Bank Deposits by Currency & \VAR{main_dic['exe_sum']['bd_by_cur']['usd']}    &\VAR{main_dic['exe_sum']['bd_by_cur']['try']}  \\
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{Domestic Debt Securities}}} \\
+&&&\\
+\VAR{main_dic['exe_sum']['dds_by_banks']['date']} &  \makecell[l]{Issued by Banks} & \VAR{main_dic['exe_sum']['dds_by_banks']['usd']} &\VAR{main_dic['exe_sum']['dds_by_banks']['try']}  \\
+\VAR{main_dic['exe_sum']['dds_by_nfc']['date']} &  \makecell[l]{Issued by Non-Financial Companies} & \VAR{main_dic['exe_sum']['dds_by_nfc']['usd']}    &\VAR{main_dic['exe_sum']['dds_by_nfc']['try']}  \\
+
+\end{longtable}}
+
+
+\pagebreak
+
+\section{Central Government Debt}
+
+\subsection{By Instrument}
+
+\href{https://en.hmb.gov.tr/public-finance-statistics}{View the data} from the primary source (TR Ministry of Treasury)
+\par \href{https://www.trounceflow.com/app/turkey/#tab_byinstrument}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_inst']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_inst']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_inst']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_inst']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_inst']['name'][i]}} & \VAR{main_dic['cgd_by_inst']['usd'][main_dic['cgd_by_inst']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_inst']['usd'][main_dic['cgd_by_inst']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_inst']['usd'][main_dic['cgd_by_inst']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_inst']['usd'][main_dic['cgd_by_inst']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_inst']['usd'][main_dic['cgd_by_inst']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_inst']['try']['date'][-1]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-2]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-3]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-4]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_inst']['try']['date'][-1]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-2]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-3]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-4]} & \VAR{main_dic['cgd_by_inst']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_inst']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_inst']['name'][i]}} & \VAR{main_dic['cgd_by_inst']['try'][main_dic['cgd_by_inst']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_inst']['try'][main_dic['cgd_by_inst']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_inst']['try'][main_dic['cgd_by_inst']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_inst']['try'][main_dic['cgd_by_inst']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_inst']['try'][main_dic['cgd_by_inst']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\subsection{By Currency (Domestic (TRY), Foreign)}
+
+\href{}{View the data} from the primary source (TR Ministry of Treasury)
+\par \href{https://www.trounceflow.com/app/turkey/#tab_bycurrency}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_cur']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_cur']['name'][i]}} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['try']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['try']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_cur']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_cur']['name'][i]}} & \VAR{main_dic['cgd_by_cur']['try'][main_dic['cgd_by_cur']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_cur']['try'][main_dic['cgd_by_cur']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_cur']['try'][main_dic['cgd_by_cur']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_cur']['try'][main_dic['cgd_by_cur']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_cur']['try'][main_dic['cgd_by_cur']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\pagebreak
+
+\section{Local Currency Government Debt}
+
+\subsection{By Holder}
+
+\href{}{View the data} from the primary source (TR Ministry of Treasury)
+\par \href{https://www.trounceflow.com/app/turkey/#tab_lctotal}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['usd']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['usd']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['lcgd_by_holder']['name']|length)}
+\makecell[l]{\VAR{main_dic['lcgd_by_holder']['name'][i]}} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-1]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-2]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-3]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-4]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['try']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['try']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['lcgd_by_holder']['name']|length)}
+\makecell[l]{\VAR{main_dic['lcgd_by_holder']['name'][i]}} & \VAR{main_dic['lcgd_by_holder']['try'][main_dic['lcgd_by_holder']['name2'][i]][-1]} & \VAR{main_dic['lcgd_by_holder']['try'][main_dic['lcgd_by_holder']['name2'][i]][-2]} & \VAR{main_dic['lcgd_by_holder']['try'][main_dic['lcgd_by_holder']['name2'][i]][-3]} & \VAR{main_dic['lcgd_by_holder']['try'][main_dic['lcgd_by_holder']['name2'][i]][-4]} & \VAR{main_dic['lcgd_by_holder']['try'][main_dic['lcgd_by_holder']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\pagebreak
+
+\section{Domestic Sectors}
+
+\subsection{By Insurance Companies}
+
+\href{https://m.treasury.gov.tr/insurance-reports}{View the data} from the primary source (TR Ministry of Treasury)
+\par \href{https://www.trounceflow.com/app/turkey/#tab_insurancecompanies}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ds_ic']['usd']['date'][-1]} & \VAR{main_dic['ds_ic']['usd']['date'][-2]} & \VAR{main_dic['ds_ic']['usd']['date'][-3]} & \VAR{main_dic['ds_ic']['usd']['date'][-4]} & \VAR{main_dic['ds_ic']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ds_ic']['usd']['date'][-1]} & \VAR{main_dic['ds_ic']['usd']['date'][-2]} & \VAR{main_dic['ds_ic']['usd']['date'][-3]} & \VAR{main_dic['ds_ic']['usd']['date'][-4]} & \VAR{main_dic['ds_ic']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ds_ic']['name']|length)}
+\makecell[l]{\VAR{main_dic['ds_ic']['name'][i]}} & \VAR{main_dic['ds_ic']['usd'][main_dic['ds_ic']['name2'][i]][-1]} & \VAR{main_dic['ds_ic']['usd'][main_dic['ds_ic']['name2'][i]][-2]} & \VAR{main_dic['ds_ic']['usd'][main_dic['ds_ic']['name2'][i]][-3]} & \VAR{main_dic['ds_ic']['usd'][main_dic['ds_ic']['name2'][i]][-4]} & \VAR{main_dic['ds_ic']['usd'][main_dic['ds_ic']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ds_ic']['try']['date'][-1]} & \VAR{main_dic['ds_ic']['try']['date'][-2]} & \VAR{main_dic['ds_ic']['try']['date'][-3]} & \VAR{main_dic['ds_ic']['try']['date'][-4]} & \VAR{main_dic['ds_ic']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ds_ic']['try']['date'][-1]} & \VAR{main_dic['ds_ic']['try']['date'][-2]} & \VAR{main_dic['ds_ic']['try']['date'][-3]} & \VAR{main_dic['ds_ic']['try']['date'][-4]} & \VAR{main_dic['ds_ic']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ds_ic']['name']|length)}
+\makecell[l]{\VAR{main_dic['ds_ic']['name'][i]}} & \VAR{main_dic['ds_ic']['try'][main_dic['ds_ic']['name2'][i]][-1]} & \VAR{main_dic['ds_ic']['try'][main_dic['ds_ic']['name2'][i]][-2]} & \VAR{main_dic['ds_ic']['try'][main_dic['ds_ic']['name2'][i]][-3]} & \VAR{main_dic['ds_ic']['try'][main_dic['ds_ic']['name2'][i]][-4]} & \VAR{main_dic['ds_ic']['try'][main_dic['ds_ic']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\subsection{By Banks}
+
+\href{}{View the data} from the primary source (TR Ministry of Treasury)
+\par \href{https://www.trounceflow.com/app/turkey/#tab_banks}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ds_b']['usd']['date'][-1]} & \VAR{main_dic['ds_b']['usd']['date'][-2]} & \VAR{main_dic['ds_b']['usd']['date'][-3]} & \VAR{main_dic['ds_b']['usd']['date'][-4]} & \VAR{main_dic['ds_b']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ds_b']['usd']['date'][-1]} & \VAR{main_dic['ds_b']['usd']['date'][-2]} & \VAR{main_dic['ds_b']['usd']['date'][-3]} & \VAR{main_dic['ds_b']['usd']['date'][-4]} & \VAR{main_dic['ds_b']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ds_b']['name']|length)}
+\makecell[l]{\VAR{main_dic['ds_b']['name'][i]}} & \VAR{main_dic['ds_b']['usd'][main_dic['ds_b']['name2'][i]][-1]} & \VAR{main_dic['ds_b']['usd'][main_dic['ds_b']['name2'][i]][-2]} & \VAR{main_dic['ds_b']['usd'][main_dic['ds_b']['name2'][i]][-3]} & \VAR{main_dic['ds_b']['usd'][main_dic['ds_b']['name2'][i]][-4]} & \VAR{main_dic['ds_b']['usd'][main_dic['ds_b']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ds_b']['try']['date'][-1]} & \VAR{main_dic['ds_b']['try']['date'][-2]} & \VAR{main_dic['ds_b']['try']['date'][-3]} & \VAR{main_dic['ds_b']['try']['date'][-4]} & \VAR{main_dic['ds_b']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ds_b']['try']['date'][-1]} & \VAR{main_dic['ds_b']['try']['date'][-2]} & \VAR{main_dic['ds_b']['try']['date'][-3]} & \VAR{main_dic['ds_b']['try']['date'][-4]} & \VAR{main_dic['ds_b']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ds_b']['name']|length)}
+\makecell[l]{\VAR{main_dic['ds_b']['name'][i]}} & \VAR{main_dic['ds_b']['try'][main_dic['ds_b']['name2'][i]][-1]} & \VAR{main_dic['ds_b']['try'][main_dic['ds_b']['name2'][i]][-2]} & \VAR{main_dic['ds_b']['try'][main_dic['ds_b']['name2'][i]][-3]} & \VAR{main_dic['ds_b']['try'][main_dic['ds_b']['name2'][i]][-4]} & \VAR{main_dic['ds_b']['try'][main_dic['ds_b']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\subsection{Bank Deposits by Currency}
+
+\href{}{View the data} from the primary source ()
+\par \href{https://www.trounceflow.com/app/turkey/#tab_bankdeposits}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['bd_by_cur']['usd']['date'][-1]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-2]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-3]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-4]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['bd_by_cur']['usd']['date'][-1]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-2]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-3]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-4]} & \VAR{main_dic['bd_by_cur']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['bd_by_cur']['name']|length)}
+\makecell[l]{\VAR{main_dic['bd_by_cur']['name'][i]}} & \VAR{main_dic['bd_by_cur']['usd'][main_dic['bd_by_cur']['name2'][i]][-1]} & \VAR{main_dic['bd_by_cur']['usd'][main_dic['bd_by_cur']['name2'][i]][-2]} & \VAR{main_dic['bd_by_cur']['usd'][main_dic['bd_by_cur']['name2'][i]][-3]} & \VAR{main_dic['bd_by_cur']['usd'][main_dic['bd_by_cur']['name2'][i]][-4]} & \VAR{main_dic['bd_by_cur']['usd'][main_dic['bd_by_cur']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['bd_by_cur']['try']['date'][-1]} & \VAR{main_dic['bd_by_cur']['try']['date'][-2]} & \VAR{main_dic['bd_by_cur']['try']['date'][-3]} & \VAR{main_dic['bd_by_cur']['try']['date'][-4]} & \VAR{main_dic['bd_by_cur']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['bd_by_cur']['try']['date'][-1]} & \VAR{main_dic['bd_by_cur']['try']['date'][-2]} & \VAR{main_dic['bd_by_cur']['try']['date'][-3]} & \VAR{main_dic['bd_by_cur']['try']['date'][-4]} & \VAR{main_dic['bd_by_cur']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['bd_by_cur']['name']|length)}
+\makecell[l]{\VAR{main_dic['bd_by_cur']['name'][i]}} & \VAR{main_dic['bd_by_cur']['try'][main_dic['bd_by_cur']['name2'][i]][-1]} & \VAR{main_dic['bd_by_cur']['try'][main_dic['bd_by_cur']['name2'][i]][-2]} & \VAR{main_dic['bd_by_cur']['try'][main_dic['bd_by_cur']['name2'][i]][-3]} & \VAR{main_dic['bd_by_cur']['try'][main_dic['bd_by_cur']['name2'][i]][-4]} & \VAR{main_dic['bd_by_cur']['try'][main_dic['bd_by_cur']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\subsection{Domestic Debt Securities}
+
+\subsubsection{Issued by Banks}
+
+\href{}{View the data} from the primary source ()
+\par \href{https://www.trounceflow.com/app/turkey/#tab_dds}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['dds_by_banks']['usd']['date'][-1]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-2]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-3]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-4]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['dds_by_banks']['usd']['date'][-1]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-2]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-3]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-4]} & \VAR{main_dic['dds_by_banks']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['dds_by_banks']['name']|length)}
+\makecell[l]{\VAR{main_dic['dds_by_banks']['name'][i]}} & \VAR{main_dic['dds_by_banks']['usd'][main_dic['dds_by_banks']['name2'][i]][-1]} & \VAR{main_dic['dds_by_banks']['usd'][main_dic['dds_by_banks']['name2'][i]][-2]} & \VAR{main_dic['dds_by_banks']['usd'][main_dic['dds_by_banks']['name2'][i]][-3]} & \VAR{main_dic['dds_by_banks']['usd'][main_dic['dds_by_banks']['name2'][i]][-4]} & \VAR{main_dic['dds_by_banks']['usd'][main_dic['dds_by_banks']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['dds_by_banks']['try']['date'][-1]} & \VAR{main_dic['dds_by_banks']['try']['date'][-2]} & \VAR{main_dic['dds_by_banks']['try']['date'][-3]} & \VAR{main_dic['dds_by_banks']['try']['date'][-4]} & \VAR{main_dic['dds_by_banks']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['dds_by_banks']['try']['date'][-1]} & \VAR{main_dic['dds_by_banks']['try']['date'][-2]} & \VAR{main_dic['dds_by_banks']['try']['date'][-3]} & \VAR{main_dic['dds_by_banks']['try']['date'][-4]} & \VAR{main_dic['dds_by_banks']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['dds_by_banks']['name']|length)}
+\makecell[l]{\VAR{main_dic['dds_by_banks']['name'][i]}} & \VAR{main_dic['dds_by_banks']['try'][main_dic['dds_by_banks']['name2'][i]][-1]} & \VAR{main_dic['dds_by_banks']['try'][main_dic['dds_by_banks']['name2'][i]][-2]} & \VAR{main_dic['dds_by_banks']['try'][main_dic['dds_by_banks']['name2'][i]][-3]} & \VAR{main_dic['dds_by_banks']['try'][main_dic['dds_by_banks']['name2'][i]][-4]} & \VAR{main_dic['dds_by_banks']['try'][main_dic['dds_by_banks']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\subsubsection{Issued by Non-Financial Companies}
+
+\href{}{View the data} from the primary source ()
+\par \href{https://www.trounceflow.com/app/turkey/#tab_ddsbynonfin}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['dds_by_nfc']['usd']['date'][-1]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-2]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-3]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-4]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['dds_by_nfc']['usd']['date'][-1]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-2]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-3]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-4]} & \VAR{main_dic['dds_by_nfc']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['dds_by_nfc']['name']|length)}
+\makecell[l]{\VAR{main_dic['dds_by_nfc']['name'][i]}} & \VAR{main_dic['dds_by_nfc']['usd'][main_dic['dds_by_nfc']['name2'][i]][-1]} & \VAR{main_dic['dds_by_nfc']['usd'][main_dic['dds_by_nfc']['name2'][i]][-2]} & \VAR{main_dic['dds_by_nfc']['usd'][main_dic['dds_by_nfc']['name2'][i]][-3]} & \VAR{main_dic['dds_by_nfc']['usd'][main_dic['dds_by_nfc']['name2'][i]][-4]} & \VAR{main_dic['dds_by_nfc']['usd'][main_dic['dds_by_nfc']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{TRY bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['dds_by_nfc']['try']['date'][-1]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-2]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-3]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-4]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['dds_by_nfc']['try']['date'][-1]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-2]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-3]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-4]} & \VAR{main_dic['dds_by_nfc']['try']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['dds_by_nfc']['name']|length)}
+\makecell[l]{\VAR{main_dic['dds_by_nfc']['name'][i]}} & \VAR{main_dic['dds_by_nfc']['try'][main_dic['dds_by_nfc']['name2'][i]][-1]} & \VAR{main_dic['dds_by_nfc']['try'][main_dic['dds_by_nfc']['name2'][i]][-2]} & \VAR{main_dic['dds_by_nfc']['try'][main_dic['dds_by_nfc']['name2'][i]][-3]} & \VAR{main_dic['dds_by_nfc']['try'][main_dic['dds_by_nfc']['name2'][i]][-4]} & \VAR{main_dic['dds_by_nfc']['try'][main_dic['dds_by_nfc']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\end{document}
