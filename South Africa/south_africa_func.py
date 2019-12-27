@@ -156,10 +156,18 @@ def comma_placement(a):
 ###################################################################################################
 
 def manipulate_num(x): #sub_name,
+    
+    import pandas as pd
+    
+    if pd.isnull(x):
+        
+        return ''
+    
+    else:
 
-    x="{0:.2f}".format(x)#\hspace{0.1cm}
+        x="{0:.2f}".format(x)#\hspace{0.1cm}
 
-    x=comma_placement(x)
+        x=comma_placement(x)
 
     return x
 
@@ -169,7 +177,7 @@ def make_camel(x):
     
     sx=x.split(' ')
     
-    no_camel_list=['and','to','in','with','(except','reserves)']
+    no_camel_list=['and','to','in','with','(except','reserves)','of','for','from']
     
     abb_list=['Fx','Sdrs','Imf','Zar']
     
