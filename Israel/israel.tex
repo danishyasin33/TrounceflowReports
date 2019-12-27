@@ -1,0 +1,427 @@
+\documentclass[11pt, oneside]{article}      % use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{tablefootnote}
+\usepackage[flushleft]{threeparttable}
+%\setTableNoteFont{\scriptsize}
+\usepackage{geometry}                       % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                          % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                       % Activate for rotated page geometry
+\usepackage[parfill]{parskip}                   % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{amsmath} % For table numbering based on Section
+\numberwithin{table}{section}
+\renewcommand\thetable{\thesection.\arabic{table}}
+\usepackage[
+singlelinecheck=false % <-- important
+]{caption}
+\usepackage[labelfont=bf,textfont=md,justification=centering]{caption}
+%\usepackage{placeins} % for fixing table position
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{subfig}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{booktabs} % for toprule,midrule, and bottomrule
+%\usepackage{dirtytalk} % for quotes
+\usepackage{lscape} % changes a page to a landscape
+\pgfplotsset{compat=1.16}
+\usetikzlibrary{intersections,decorations.markings,,pgfplots.colorbrewer,shapes.arrows}
+\usepgfmodule{nonlineartransformations}
+\usepgflibrary{curvilinear}
+\usepgfmodule{nonlineartransformations}
+\tikzset{arrownode/.style={
+    shape=single arrow,
+    single arrow head extend=.75em,
+    single arrow head indent=.25em,
+    minimum width=3em,
+    draw,
+    }
+}
+\usepackage{graphicx}               % Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+                                % TeX will automatically convert eps --> pdf in pdflatex        
+\usepackage{amssymb}
+\usepackage{hyperref} %Make this the last package imported
+\usepackage[bottom]{footmisc} % Make footnotes to go to the buttom of a page
+\usepackage[screen,nopanel]{pdfscreen} % Makes sections colorful
+\usepackage{pdfpages} % allows to load a pdf page into latex
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Sharelatex Example},
+    pdfpagemode=FullScreen,
+}
+
+
+
+\title{Trounceflow Countries: Israel}
+\author{Michael Trounce}
+
+
+\begin{document}
+\includepdf[page={1}]{cover}
+\maketitle
+\begin{abstract}
+   The \lq{Trounceflow Countries}\rq series of \lq{living}\rq documents provide real-time dynamic summaries of macroeconomic data relevant to the flows-and-positions analysis of emerging market
+debt. These macroeconomic data concentrate on the structure of the government bond market
+but also include other useful but hard-to-wrangle data such as the structure of the local institutional investor base. The data is obtained from the Trounceflow App (trounceflow.com) and
+the document data is automatically updated in line with the automatic updates on the App;
+links to the underlying national sources are also given in the \lq{living}\rq documents.
+\end{abstract}
+
+\begin{center}
+\vfill{The values presented in this report are the face values of the bonds}
+\end{center}
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+\section{Executive Summary}
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{clrr}
+%\caption{Executive Summary}
+%\midrule
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{Central Government Debt}}} \\
+&&&\\
+\toprule
+\textit{\textbf{Date}} & \textit{\textbf{Type}} & \textit{\textbf{USD bn (Total)}} & \textit{\textbf{ILS bn (Total)}}\\
+\midrule
+\VAR{main_dic['exe_sum']['cgd_by_holder']['date']} &  By Residency of Holders  & \VAR{main_dic['exe_sum']['cgd_by_holder']['usd']}    &\VAR{main_dic['exe_sum']['cgd_by_holder']['ils']}  \\
+\VAR{main_dic['exe_sum']['cgd_by_cur']['date']} &  By Currency (Domestic (ILS), Foreign)     & \VAR{main_dic['exe_sum']['cgd_by_cur']['usd']}    &\VAR{main_dic['exe_sum']['cgd_by_cur']['ils']}  \\
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{Local Currency Government Debt}}} \\
+&&&\\
+\midrule
+\textit{\textbf{Date}} & \textit{\textbf{Type}} & \textit{\textbf{USD bn (Total)}} & \textit{\textbf{ILS bn (Total)}}\\
+\midrule
+\VAR{main_dic['exe_sum']['lcgd_by_holder']['date']} &  By Holder & \VAR{main_dic['exe_sum']['lcgd_by_holder']['usd']}    &\VAR{main_dic['exe_sum']['lcgd_by_holder']['ils']}  \\
+%\midrule
+&&&\\
+\multicolumn{4}{c}{\textit{\textbf{External sector}}} \\
+&&&\\
+\midrule
+\textit{\textbf{Date}} & \textit{\textbf{Type}} & \textit{\textbf{USD bn (Total)}} & \textit{\textbf{ILS bn (Total)}}\\
+\midrule
+\VAR{main_dic['exe_sum']['fxr']['date']} &  IMF FX Reserves & \VAR{main_dic['exe_sum']['fxr']['usd']}    &\VAR{main_dic['exe_sum']['fxr']['ils']}  \\
+\end{longtable}}
+
+
+\pagebreak
+
+\section{Central Government Debt}
+
+\subsection{By Residency of Holders}
+
+\href{https://www.cbs.gov.il/he/pages/default.aspx}{View the data} from the primary source (Central Bureau of Statistics)
+\par \href{https://www.trounceflow.com/app/israel/#tab_byresidency}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_holder']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_holder']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_holder']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_holder']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_holder']['name'][i]}} & \VAR{main_dic['cgd_by_holder']['usd'][main_dic['cgd_by_holder']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_holder']['usd'][main_dic['cgd_by_holder']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_holder']['usd'][main_dic['cgd_by_holder']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_holder']['usd'][main_dic['cgd_by_holder']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_holder']['usd'][main_dic['cgd_by_holder']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{ILS bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_holder']['ils']['date'][-1]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-2]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-3]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-4]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_holder']['ils']['date'][-1]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-2]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-3]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-4]} & \VAR{main_dic['cgd_by_holder']['ils']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_holder']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_holder']['name'][i]}} & \VAR{main_dic['cgd_by_holder']['ils'][main_dic['cgd_by_holder']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_holder']['ils'][main_dic['cgd_by_holder']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_holder']['ils'][main_dic['cgd_by_holder']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_holder']['ils'][main_dic['cgd_by_holder']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_holder']['ils'][main_dic['cgd_by_holder']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\subsection{By Currency (Domestic (ILS), Foreign)}
+
+\href{https://www.cbs.gov.il/he/pages/default.aspx}{View the data} from the primary source (Central Bureau of Statistics)
+\par \href{https://www.trounceflow.com/app/israel/#tab_bycurrency}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['usd']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_cur']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_cur']['name'][i]}} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_cur']['usd'][main_dic['cgd_by_cur']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{ILS bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['ils']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['cgd_by_cur']['ils']['date'][-1]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-2]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-3]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-4]} & \VAR{main_dic['cgd_by_cur']['ils']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['cgd_by_cur']['name']|length)}
+\makecell[l]{\VAR{main_dic['cgd_by_cur']['name'][i]}} & \VAR{main_dic['cgd_by_cur']['ils'][main_dic['cgd_by_cur']['name2'][i]][-1]} & \VAR{main_dic['cgd_by_cur']['ils'][main_dic['cgd_by_cur']['name2'][i]][-2]} & \VAR{main_dic['cgd_by_cur']['ils'][main_dic['cgd_by_cur']['name2'][i]][-3]} & \VAR{main_dic['cgd_by_cur']['ils'][main_dic['cgd_by_cur']['name2'][i]][-4]} & \VAR{main_dic['cgd_by_cur']['ils'][main_dic['cgd_by_cur']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\pagebreak
+
+\section{Local Currency Government Debt}
+
+\subsection{By Holder}
+
+\href{}{View the data} from the primary source ()
+\par \href{https://www.trounceflow.com/app/israel/#tab_lctotal}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['usd']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['usd']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['lcgd_by_holder']['name']|length)}
+\makecell[l]{\VAR{main_dic['lcgd_by_holder']['name'][i]}} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-1]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-2]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-3]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-4]} & \VAR{main_dic['lcgd_by_holder']['usd'][main_dic['lcgd_by_holder']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{ILS bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['ils']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['lcgd_by_holder']['ils']['date'][-1]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-2]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-3]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-4]} & \VAR{main_dic['lcgd_by_holder']['ils']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['lcgd_by_holder']['name']|length)}
+\makecell[l]{\VAR{main_dic['lcgd_by_holder']['name'][i]}} & \VAR{main_dic['lcgd_by_holder']['ils'][main_dic['lcgd_by_holder']['name2'][i]][-1]} & \VAR{main_dic['lcgd_by_holder']['ils'][main_dic['lcgd_by_holder']['name2'][i]][-2]} & \VAR{main_dic['lcgd_by_holder']['ils'][main_dic['lcgd_by_holder']['name2'][i]][-3]} & \VAR{main_dic['lcgd_by_holder']['ils'][main_dic['lcgd_by_holder']['name2'][i]][-4]} & \VAR{main_dic['lcgd_by_holder']['ils'][main_dic['lcgd_by_holder']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\pagebreak
+
+\section{External Sector}
+
+\subsection{International Investment Position}
+
+\subsubsection{Portfolio Liabilities}
+
+\href{http://data.imf.org/regular.aspx?key=61280813}{View the data} from the primary source (IMF)
+\par \href{https://www.trounceflow.com/app/israel/#tab_portfoliol}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ipp_pl']['usd']['date'][-1]} & \VAR{main_dic['ipp_pl']['usd']['date'][-2]} & \VAR{main_dic['ipp_pl']['usd']['date'][-3]} & \VAR{main_dic['ipp_pl']['usd']['date'][-4]} & \VAR{main_dic['ipp_pl']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ipp_pl']['usd']['date'][-1]} & \VAR{main_dic['ipp_pl']['usd']['date'][-2]} & \VAR{main_dic['ipp_pl']['usd']['date'][-3]} & \VAR{main_dic['ipp_pl']['usd']['date'][-4]} & \VAR{main_dic['ipp_pl']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ipp_pl']['name']|length)}
+\makecell[l]{\VAR{main_dic['ipp_pl']['name'][i]}} & \VAR{main_dic['ipp_pl']['usd'][main_dic['ipp_pl']['name2'][i]][-1]} & \VAR{main_dic['ipp_pl']['usd'][main_dic['ipp_pl']['name2'][i]][-2]} & \VAR{main_dic['ipp_pl']['usd'][main_dic['ipp_pl']['name2'][i]][-3]} & \VAR{main_dic['ipp_pl']['usd'][main_dic['ipp_pl']['name2'][i]][-4]} & \VAR{main_dic['ipp_pl']['usd'][main_dic['ipp_pl']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{ILS bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ipp_pl']['ils']['date'][-1]} & \VAR{main_dic['ipp_pl']['ils']['date'][-2]} & \VAR{main_dic['ipp_pl']['ils']['date'][-3]} & \VAR{main_dic['ipp_pl']['ils']['date'][-4]} & \VAR{main_dic['ipp_pl']['ils']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ipp_pl']['ils']['date'][-1]} & \VAR{main_dic['ipp_pl']['ils']['date'][-2]} & \VAR{main_dic['ipp_pl']['ils']['date'][-3]} & \VAR{main_dic['ipp_pl']['ils']['date'][-4]} & \VAR{main_dic['ipp_pl']['ils']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ipp_pl']['name']|length)}
+\makecell[l]{\VAR{main_dic['ipp_pl']['name'][i]}} & \VAR{main_dic['ipp_pl']['ils'][main_dic['ipp_pl']['name2'][i]][-1]} & \VAR{main_dic['ipp_pl']['ils'][main_dic['ipp_pl']['name2'][i]][-2]} & \VAR{main_dic['ipp_pl']['ils'][main_dic['ipp_pl']['name2'][i]][-3]} & \VAR{main_dic['ipp_pl']['ils'][main_dic['ipp_pl']['name2'][i]][-4]} & \VAR{main_dic['ipp_pl']['ils'][main_dic['ipp_pl']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\subsubsection{Assets \& Liabilities}
+
+\href{}{View the data} from the primary source ()
+\par \href{https://www.trounceflow.com/app/israel/#tab_al}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ipp_al']['usd']['date'][-1]} & \VAR{main_dic['ipp_al']['usd']['date'][-2]} & \VAR{main_dic['ipp_al']['usd']['date'][-3]} & \VAR{main_dic['ipp_al']['usd']['date'][-4]} & \VAR{main_dic['ipp_al']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ipp_al']['usd']['date'][-1]} & \VAR{main_dic['ipp_al']['usd']['date'][-2]} & \VAR{main_dic['ipp_al']['usd']['date'][-3]} & \VAR{main_dic['ipp_al']['usd']['date'][-4]} & \VAR{main_dic['ipp_al']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ipp_al']['name']|length)}
+\makecell[l]{\VAR{main_dic['ipp_al']['name'][i]}} & \VAR{main_dic['ipp_al']['usd'][main_dic['ipp_al']['name2'][i]][-1]} & \VAR{main_dic['ipp_al']['usd'][main_dic['ipp_al']['name2'][i]][-2]} & \VAR{main_dic['ipp_al']['usd'][main_dic['ipp_al']['name2'][i]][-3]} & \VAR{main_dic['ipp_al']['usd'][main_dic['ipp_al']['name2'][i]][-4]} & \VAR{main_dic['ipp_al']['usd'][main_dic['ipp_al']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{ILS bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['ipp_al']['ils']['date'][-1]} & \VAR{main_dic['ipp_al']['ils']['date'][-2]} & \VAR{main_dic['ipp_al']['ils']['date'][-3]} & \VAR{main_dic['ipp_al']['ils']['date'][-4]} & \VAR{main_dic['ipp_al']['ils']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['ipp_al']['ils']['date'][-1]} & \VAR{main_dic['ipp_al']['ils']['date'][-2]} & \VAR{main_dic['ipp_al']['ils']['date'][-3]} & \VAR{main_dic['ipp_al']['ils']['date'][-4]} & \VAR{main_dic['ipp_al']['ils']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['ipp_al']['name']|length)}
+\makecell[l]{\VAR{main_dic['ipp_al']['name'][i]}} & \VAR{main_dic['ipp_al']['ils'][main_dic['ipp_al']['name2'][i]][-1]} & \VAR{main_dic['ipp_al']['ils'][main_dic['ipp_al']['name2'][i]][-2]} & \VAR{main_dic['ipp_al']['ils'][main_dic['ipp_al']['name2'][i]][-3]} & \VAR{main_dic['ipp_al']['ils'][main_dic['ipp_al']['name2'][i]][-4]} & \VAR{main_dic['ipp_al']['ils'][main_dic['ipp_al']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+\subsection{FX Reserves}
+
+\href{http://data.imf.org/regular.aspx?key=61280813}{View the data} from the primary source (IMF)
+\par \href{https://www.trounceflow.com/app/israel/#tab_fxreserves}{View the chart} on trounceflow.com and download the data straight from the chart
+\par Recent values are as follows:
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{USD bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['fxr']['usd']['date'][-1]} & \VAR{main_dic['fxr']['usd']['date'][-2]} & \VAR{main_dic['fxr']['usd']['date'][-3]} & \VAR{main_dic['fxr']['usd']['date'][-4]} & \VAR{main_dic['fxr']['usd']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['fxr']['usd']['date'][-1]} & \VAR{main_dic['fxr']['usd']['date'][-2]} & \VAR{main_dic['fxr']['usd']['date'][-3]} & \VAR{main_dic['fxr']['usd']['date'][-4]} & \VAR{main_dic['fxr']['usd']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['fxr']['name']|length)}
+\makecell[l]{\VAR{main_dic['fxr']['name'][i]}} & \VAR{main_dic['fxr']['usd'][main_dic['fxr']['name2'][i]][-1]} & \VAR{main_dic['fxr']['usd'][main_dic['fxr']['name2'][i]][-2]} & \VAR{main_dic['fxr']['usd'][main_dic['fxr']['name2'][i]][-3]} & \VAR{main_dic['fxr']['usd'][main_dic['fxr']['name2'][i]][-4]} & \VAR{main_dic['fxr']['usd'][main_dic['fxr']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+
+
+%\setlength\LTleft{-2in}
+\setlength\LTright{2in}
+{\setlength{\tabcolsep}{2pt}
+\begin{longtable}{l*{5}r}
+\caption{ILS bn}\\
+%&\multicolumn{5}{c}{\textit{\textbf{Date}}}\\
+\toprule
+& \VAR{main_dic['fxr']['ils']['date'][-1]} & \VAR{main_dic['fxr']['ils']['date'][-2]} & \VAR{main_dic['fxr']['ils']['date'][-3]} & \VAR{main_dic['fxr']['ils']['date'][-4]} & \VAR{main_dic['fxr']['ils']['date'][-5]}\\
+\midrule
+\endfirsthead
+\caption{Continued}\\
+\toprule
+& \VAR{main_dic['fxr']['ils']['date'][-1]} & \VAR{main_dic['fxr']['ils']['date'][-2]} & \VAR{main_dic['fxr']['ils']['date'][-3]} & \VAR{main_dic['fxr']['ils']['date'][-4]} & \VAR{main_dic['fxr']['ils']['date'][-5]}\\
+\midrule
+\endhead
+\BLOCK{for i in range(main_dic['fxr']['name']|length)}
+\makecell[l]{\VAR{main_dic['fxr']['name'][i]}} & \VAR{main_dic['fxr']['ils'][main_dic['fxr']['name2'][i]][-1]} & \VAR{main_dic['fxr']['ils'][main_dic['fxr']['name2'][i]][-2]} & \VAR{main_dic['fxr']['ils'][main_dic['fxr']['name2'][i]][-3]} & \VAR{main_dic['fxr']['ils'][main_dic['fxr']['name2'][i]][-4]} & \VAR{main_dic['fxr']['ils'][main_dic['fxr']['name2'][i]][-5]} \\
+\BLOCK{endfor}
+\end{longtable}}
+
+\end{document}
